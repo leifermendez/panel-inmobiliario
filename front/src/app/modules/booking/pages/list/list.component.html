@@ -1,0 +1,65 @@
+<app-header-dashboard></app-header-dashboard>
+<app-side-bar></app-side-bar>
+
+<div class="container-main">
+  <div class="mb-2">
+    <app-history [keySource]="source" [history]="history"></app-history>
+  </div>
+  <ng-container *ngTemplateOutlet="loadingWrapper;context: {loading:loading}"></ng-container>
+  <div class="row ml-0 mr-0 col-12 p-0">
+    <!-- CARD TICKET -->
+    <div [routerLink]="['/','booking',a?._id]"
+         class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 pl-0 mb-2 animation-{{i}} animate__animated animate__fadeIn"
+         *ngFor="let a of data;let i = index">
+      <app-card-booking class="cal-cell-row" [data]="a"></app-card-booking>
+    </div>
+    <ng-container *ngTemplateOutlet="emptyAccommodation;context: {data:data}"></ng-container>
+  </div>
+</div>
+
+<ng-template #emptyAccommodation let-data="data">
+  <div *ngIf="!data?.length" class="animate__animated animate__fadeIn mt-3 block-empty-module col-12 text-center col-sm-12 offset-sm-0 col-md-10 offset-md-1
+  col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
+    <div class="mb-2">
+      <img class="img-stander" src="../../../../../assets/images/undraw_booking_33fn.svg" alt="">
+    </div>
+    <h5 class="">{{'TASK_LIST.EMPTY' | translate}}</h5>
+    <p>
+      {{'TASK_LIST.EMPTY_PLACEHOLDER'|translate}}
+    </p>
+  </div>
+</ng-template>
+
+
+<ng-template #loadingWrapper let-loading="loading">
+
+  <!--- ****** SHOW FOR LOADING ****** -->
+
+  <div *ngIf="loading === true" class="wrapper-loading-inside">
+    <div class="text-center d-flex flex-column justify-content-center align-items-center">
+      <div class="wrapper-icon">
+        <img class="icon" src="../../../../../assets/images/airbnb-logo.svg" alt="">
+      </div>
+      <div class="p-2">
+        <span class="text-muted small">{{'GENERAL.LOADING'|translate}}</span>
+      </div>
+    </div>
+  </div>
+
+  <!--- ****** SHOW FOR ERRORS ****** -->
+
+  <div *ngIf="(loading?.status)" class="wrapper-loading-inside">
+    <div class="text-center d-flex flex-column justify-content-center align-items-center">
+      <div>
+        <img class="image-error" src="../../../../../assets/images/undraw_blank_canvas_3rbb.svg" alt="">
+      </div>
+      <div class="p-2">
+        <span class="text-muted small">{{'ERRORS.UNDEFINED.TITLE'|translate}}</span>
+        <div class="p-2">
+          <button type="button" [routerLink]="['/','home']"
+                  class="btn btn-primary">{{'GENERAL.BACK'|translate}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

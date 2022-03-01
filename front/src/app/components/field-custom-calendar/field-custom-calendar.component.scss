@@ -1,0 +1,26 @@
+::ng-deep {
+  .bs-datepicker{
+    box-shadow: 0 0 10px 0 #d9d9d9 !important;
+  }
+
+  .bs-datepicker-head {
+    background-color: white !important;
+  }
+
+  .bs-datepicker-head button {
+    color: #222222 !important;
+  }
+
+  .bs-datepicker-body {
+    border-color: white !important;
+  }
+
+  .bs-datepicker-container {
+    padding: 0 !important;
+  }
+
+  .theme-green .bs-datepicker-body table td.week span{
+    color: gray !important;
+    opacity: .1 !important;
+  }
+}

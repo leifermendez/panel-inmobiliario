@@ -1,0 +1,38 @@
+<!-- >http://app.avantio.com/index.php?action=Login&module=Usuarios&id=contacto%40leangasoftware.es%3BNicole.02 -->
+<form [formGroup]="formCall" (submit)="onSubmit()">
+
+  <div class="modal-header font-weight-bold">
+    {{'AUTH.AVANTIO_TITLE' | translate}}
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label>{{'AUTH.USERNAME' | translate}}</label>
+      <input type="text" class="form-control" formControlName="login">
+    </div>
+    <div class="form-group">
+      <label>{{'AUTH.PASSWORD' | translate}}</label>
+      <input type="password" class="form-control" formControlName="password">
+    </div>
+    <hr class="row">
+    <button [disabled]="!formCall.valid" type="submit" class="btn btn-primary">
+      {{'AUTH.LOG_IN' | translate}}
+    </button>
+  </div>
+</form>
+
+
+<!--  ********** -->
+<ng-template #thankYouCall let-send="send">
+  <div *ngIf="send === 'call'"
+       class="animate__animated animate__fadeIn w-100 d-flex justify-content-center align-content-center h-100">
+    <div class="text-center">
+      <div class="thankYouPage">
+        <img class="img" src="../../../assets/images/undraw_schedule_pnbk.svg" alt="">
+      </div>
+      <div>
+        <p class="mb-0">{{'REQUEST.CALL.THANKYOU' | translate}}</p>
+        <div class="small text-muted">{{'REQUEST.CALL.THANKYOU_PLACEHOLDER' | translate}}</div>
+      </div>
+    </div>
+  </div>
+</ng-template>

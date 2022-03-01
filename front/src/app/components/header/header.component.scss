@@ -1,0 +1,28 @@
+@import '../../../shared.scss';
+
+:host{
+  background: $base-color-1;
+  height:60px;
+  box-shadow: $shadow-custom;
+  padding: .5rem;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  border-bottom: solid 1px $border-color;
+}
+
+.text-logo{
+  font-weight: 500;
+}
+
+.menu ul li{
+  border-radius: .25rem;
+  border: solid 1px #f7f7f7;
+  font-size: .8rem;
+}
+
+.logo{
+  width: 135px;
+  height: 40px;
+  object-fit: contain;
+}

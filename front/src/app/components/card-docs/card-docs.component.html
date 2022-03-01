@@ -1,0 +1,18 @@
+<div class="pt-2 pr-2 pb-2" (click)="openModal(data)">
+  <div class="d-flex justify-content-between">
+    <div>
+      <div class="wrapper-title">{{data?.name}} <span class="text-muted"><fa-icon
+        [icon]="faQuestionCircle"></fa-icon></span></div>
+      <div class="small">{{data?.observation}}</div>
+    </div>
+    <div class="check-wrapper">
+      <div class="icon-zone" [ngClass]="{
+      'percentage-green':(data?.percentage>=90),
+      'percentage-yellow':(data?.percentage<90 && data?.percentage>=49),
+      'percentage-red':(data?.percentage<49)
+      }">
+        <span class="percentage">{{data?.percentage}}%</span>
+      </div>
+    </div>
+  </div>
+</div>

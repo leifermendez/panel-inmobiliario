@@ -1,0 +1,68 @@
+/**STEPPER **/
+@import './shared.scss';
+
+:root {
+  --zoneColor: rgb(249 249 249 / 75%)
+}
+
+div[class^="copilot-view-step-"], div[class*=" copilot-view-step-"] {
+  background-color: transparent !important;
+  max-width: 100% !important;
+  //display: flex !important;
+  justify-content: center;
+  top: 5% !important;
+}
+
+.copilot-custom {
+  color: #222222;
+  margin: auto;
+  padding: .75rem;
+  background-color: white;
+  max-width: 40rem;
+  max-height: 40rem;
+  border-radius: $border-radius;
+  box-shadow: $shadow-custom;
+
+  .image-stepper {
+    width: 20rem;
+  }
+}
+
+.ngx-copilot-pulse {
+  background-color: initial !important;
+  border: solid 2px $base-color-primary-2 !important;
+
+  &:after {
+    content: "";
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    transform: scale(1, 1);
+    border-radius: 50%;
+    background-color: $base-color-primary-2;
+    opacity: 0;
+    animation: pulsing 1000ms infinite;
+    animation-iteration-count: 10;
+  }
+}
+
+
+// http://tobiasahlin.com/blog/how-to-animate-box-shadow/
+// Do not use box shadow for animation
+@keyframes pulsing {
+  0% {
+    transform: scale(1, 1);
+    opacity: 0.25;
+  }
+  50% {
+    transform: scale(1.5, 1.5);
+    opacity: 0.5;
+  }
+  70% {
+    transform: scale(1.7, 1.7);
+    opacity: 0.25;
+  }
+  100% {
+    opacity: 0;
+  }
+}

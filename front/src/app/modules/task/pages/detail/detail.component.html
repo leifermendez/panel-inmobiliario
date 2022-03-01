@@ -1,0 +1,210 @@
+<app-header-dashboard></app-header-dashboard>
+<app-side-bar></app-side-bar>
+
+<div class="container-main">
+  <div class="mb-2">
+    <app-history [history]="history"></app-history>
+  </div>
+  <ng-container *ngTemplateOutlet="loadingWrapper;context: {loading:loading}"></ng-container>
+  <div class="row ml-0 mr-0 col-12 p-0">
+
+    <!--- ********** BLOCK 1 ************ --->
+
+    <div
+      class=" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 p-0 block-body animation-1 animate__animated animate__fadeIn">
+      <div class="p-2">
+        <div class="text-muted small pb-2">{{((newTask) ? now : data$?.createdAt)  | date}}</div>
+        <div class="mt-2 pt-2" *ngIf="newTask">
+          <app-new-task [accommodation]="idAccommodation"></app-new-task>
+        </div>
+        <div class="mt-2 pt-2" *ngIf="!newTask">
+          <ng-container *ngTemplateOutlet="showTask;context{data:data$}"></ng-container>
+        </div>
+      </div>
+    </div>
+
+    <!--- ********** BLOCK 2 ************ --->
+    <div
+      class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 p-0 block-body animation-2 animate__animated animate__fadeIn">
+      <ng-container *ngTemplateOutlet="placeHelp"></ng-container>
+      <app-sub-header-accommodation *ngIf="!newTask" [data]="data$?.accommodation"></app-sub-header-accommodation>
+      <div *ngIf="!newTask" class="inbox">
+        <form [formGroup]="form" (submit)="send()">
+        <div class="wrapper-text-area">
+          <div class="text-area ">
+
+            <!---- *********************************** --->
+
+
+              <quill-editor customToolbarPosition="bottom" formControlName="observation">
+                <div quill-editor-toolbar>
+                <span class="ql-formats">
+                  <button class="ql-bold" [title]="'Bold'"></button>
+                </span>
+                  <span class="ql-formats">
+                <select class="ql-align" [title]="'Aligment'">
+                  <option selected></option>
+                  <option value="center"></option>
+                  <option value="right"></option>
+                  <option value="justify"></option>
+                </select>
+                <select class="ql-align" [title]="'Aligment2'">
+                  <option selected></option>
+                  <option value="center"></option>
+                  <option value="right"></option>
+                  <option value="justify"></option>
+                </select>
+              </span>
+                </div>
+              </quill-editor>
+
+
+            <!---- *********************************** --->
+
+          </div>
+          <div>
+
+            <button [disabled]="!form.valid" ngxLoading [textLoading]="'GENERAL.SENDING' | translate"
+                    [textInitial]="'GENERAL.SEND' |translate"
+                    [loadingFlag]="loadingSending"
+                    class="btn hvr-shrink btn-sm btn-menu-call button-send" type="submit">
+            </button>
+          </div>
+        </div>
+
+      </form>
+
+
+        <ng-container *ngTemplateOutlet="emptyAccommodation;context: {data:data$?.comments}"></ng-container>
+        <ng-container *ngIf="data$?.comments?.length">
+          <div class="message  p-3" *ngFor="let a of data$?.comments | arrayReverse">
+            <div>
+              <div class="text-muted small pb-2" *ngIf="a?.dateCreate" timeago [date]="a?.dateCreate"></div>
+            </div>
+            <div class="d-flex">
+              <div>
+                <img class="avatar" src="../../../../../assets/images/undraw_profile_pic_ic5t.svg" alt="">
+              </div>
+              <div class="body pl-3 pr-3" [innerHTML]="a?.comment"></div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+<!---  **** NEW TASK INPUT ****** -->
+
+<ng-template #showTask let-data="data">
+  <!--  {{data | json}}-->
+  <h6 class="truncate">{{data?.title}}</h6>
+  <div class="description pt-2 " [innerHTML]="data?.observation">
+  </div>
+  <div class="d-flex flex-wrap pt-2">
+    <div *ngFor="let fileItem of data?.attachment" class="mr-2 position-relative single-close">
+      <div class="card-attach">
+        <div class="body">
+          <div class="text-center icon-padding">
+            <div class="img-preview-thumbnail"
+                 *ngIf="['.jpg','.jpeg','.png','.webp','.svg'].includes(fileItem?.fileType)">
+              <img width="50px" [src]="fileItem?.small">
+            </div>
+
+            <div *ngIf="fileType !== 'image'">
+              <fa-icon *ngIf="['.doc','.docx'].includes(fileItem?.fileType)"
+                       [icon]="faFileWord"></fa-icon>
+              <fa-icon *ngIf="['.pdf'].includes(fileItem?.fileType)"
+                       [icon]="faFilePdf"></fa-icon>
+              <fa-icon *ngIf="['.csv','.xls','.xlsx'].includes(fileItem?.fileType)"
+                       [icon]="faFileExcel"></fa-icon>
+            </div>
+          </div>
+          <div class="footer pt-2">
+            <a [href]="fileItem?.original" class="filename truncate text-dark" target="_blank">
+              <div class="filename truncate">{{fileItem.fileName}}</div>
+            </a>
+            <a [href]="fileItem?.original" target="_blank" class="small text-muted filename-sub truncate">
+              <div class=" ">{{fileItem?.fileType}}</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--    <div *ngFor="let fileItem of data?.attachment" class="mr-2 position-relative single-close">-->
+    <!--      <div class="card-attach">-->
+    <!--        <img [src]="fileItem?.small" alt="">-->
+    <!--      </div>-->
+    <!--    </div>-->
+  </div>
+</ng-template>
+
+
+<!---  **** TEMPLATE HELP ****** -->
+
+<ng-template #placeHelp>
+  <div *ngIf="newTask" class="help-zone d-flex justify-content-center align-items-center position-relative h-100 w-100">
+    <div class="text-center">
+      <div>
+        <img class="img" src="../../../../../assets/images/undraw_Work_time_re_hdyv.svg" alt="">
+      </div>
+      <div>
+        <div><h5>Lorem ipsum dolor.</h5></div>
+        <div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, reprehenderit.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+
+<!--- **** EMPTY COMMENTS **** -->
+<ng-template #emptyAccommodation let-data="data">
+  <div *ngIf="!data?.length" class="animate__animated animate__fadeIn mt-3 border-0 block-empty-module col-12 text-center
+  ">
+    <div class="mb-2">
+      <img class="img-stander" src="../../../../../assets/images/undraw_personal_opinions_g3kr.svg" alt="">
+    </div>
+    <h6 class="">{{'TASK_LIST.EMPTY' | translate}}</h6>
+    <p class="small">
+      {{'TASK_LIST.EMPTY_PLACEHOLDER'|translate}}
+    </p>
+  </div>
+</ng-template>
+
+
+<ng-template #loadingWrapper let-loading="loading">
+
+  <!--- ****** SHOW FOR LOADING ****** -->
+
+  <div *ngIf="loading === true" class="wrapper-loading-inside">
+    <div class="text-center d-flex flex-column justify-content-center align-items-center">
+      <div class="wrapper-icon">
+        <img class="icon" src="../../../../../assets/images/airbnb-logo.svg" alt="">
+      </div>
+      <div class="p-2">
+        <span class="text-muted small">{{'GENERAL.LOADING'|translate}}</span>
+      </div>
+    </div>
+  </div>
+
+  <!--- ****** SHOW FOR ERRORS ****** -->
+
+  <div *ngIf="(loading?.status)" class="wrapper-loading-inside">
+    <div class="text-center d-flex flex-column justify-content-center align-items-center">
+      <div>
+        <img class="image-error" src="../../../../../assets/images/undraw_blank_canvas_3rbb.svg" alt="">
+      </div>
+      <div class="p-2">
+        <span class="text-muted small">{{'ERRORS.UNDEFINED.TITLE'|translate}}</span>
+        <div class="p-2">
+          <button type="button" [routerLink]="['/','home']"
+                  class="btn btn-primary">{{'GENERAL.BACK'|translate}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,30 @@
+{
+  "registration": {
+    "SUBJECT": "Verify your email at myProject",
+    "MESSAGE": "<p>Hello %s.</p> <p>Welcome! To verify your email, please click in this link:</p> <p>%s/verify/%s</p> <p>Thank you.</p>"
+  },
+  "forgotPassword": {
+    "SUBJECT": "Password recovery at myProject",
+    "MESSAGE": "<p>To recover the password for user: %s</p> <p>click the following link:</p> <p>%s/reset/%s</p> <p>If this was a mistake, you can ignore this message.</p> <p>Thank you.</p>"
+  },
+  "eventService": {
+    "fromBooking": {
+      "TITLE": "Tienes una nueva reserva, %s al %s",
+      "OBSERVATION": "<i>%s</i> disfrutará de una agradable estancia en tu piso <i>%s</i>"
+    },
+    "fromTask": {
+      "TITLE": "Nueva tarea, %s",
+      "OBSERVATION": "%s"
+    }
+  },
+  "calendarService": {
+    "visit": {
+      "TITLE": "Visita programada para %s",
+      "OBSERVATION": "%s realizó solicitud de visita con fecha %s"
+    },
+    "call": {
+      "TITLE": "Llamada programada",
+      "OBSERVATION": "%s realizó solicitud de llamada con fecha %s"
+    }
+  }
+}

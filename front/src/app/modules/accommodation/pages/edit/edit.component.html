@@ -1,0 +1,63 @@
+<app-header-dashboard></app-header-dashboard>
+<app-side-bar></app-side-bar>
+
+<div class="container-main">
+  <div>
+    <app-history [history]="history"></app-history>
+  </div>
+  <ng-container *ngTemplateOutlet="loadingWrapper;context: {loading:loading}"></ng-container>
+
+  <div class="row ml-0 mr-0 col-12 p-0">
+    <!-------***************** BLOCK 1 *****************-------------->
+    <app-acc-detail [id]="id" [data]="dataResponse?.accommodation"
+                    class="animation-1 animate__animated animate__fadeIn pt-3 col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 block-body block-preview">
+    </app-acc-detail>
+
+    <!-------***************** BLOCK 2 *****************-------------->
+    <app-acc-edit [id]="id" [data]="dataResponse?.accommodation"
+                  class="animation-2 animate__animated animate__fadeIn col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 pl-0 pr-0 block-body block-preview">
+    </app-acc-edit>
+
+
+    <!-------***************** BLOCK 3 *****************-------------->
+    <app-acc-docs [id]="id" [data]="dataResponse?.docs"
+                  class="animation-4 animate__animated animate__fadeIn col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 pl-0 pr-0 block-body block-preview ">
+    </app-acc-docs>
+
+  </div>
+
+</div>
+
+
+<ng-template #loadingWrapper let-loading="loading">
+
+  <!--- ****** SHOW FOR LOADING ****** -->
+
+  <div *ngIf="loading === true" class="wrapper-loading-inside">
+    <div class="text-center d-flex flex-column justify-content-center align-items-center">
+      <div class="wrapper-icon">
+        <img class="icon" src="../../../../../assets/images/airbnb-logo.svg" alt="">
+      </div>
+      <div class="p-2">
+        <span class="text-muted small">{{'GENERAL.LOADING'|translate}}</span>
+      </div>
+    </div>
+  </div>
+
+  <!--- ****** SHOW FOR ERRORS ****** -->
+
+  <div *ngIf="(loading?.status)" class="wrapper-loading-inside">
+    <div class="text-center d-flex flex-column justify-content-center align-items-center">
+      <div>
+        <img class="image-error" src="../../../../../assets/images/undraw_blank_canvas_3rbb.svg" alt="">
+      </div>
+      <div class="p-2">
+        <span class="text-muted small">{{'ERRORS.UNDEFINED.TITLE'|translate}}</span>
+        <div class="p-2">
+          <button type="button" [routerLink]="['/','home']"
+                  class="btn btn-primary">{{'GENERAL.BACK'|translate}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

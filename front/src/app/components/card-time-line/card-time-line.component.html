@@ -1,0 +1,31 @@
+<div>
+  <ng-container *ngTemplateOutlet="emptyAccommodation;context: {data:data}"></ng-container>
+  <div class="parent" *ngFor="let a of data?.docs;let odd = odd">
+    <div class="text-center date-timeline">
+      <span class="small">{{a?.createdAt |date}}</span>
+    </div>
+    <div class="position-relative">
+      <div class="p-1 d-flex justify-content-center">
+        <div class="icon-section p-1 icon-color-{{a?.type}}">
+          <fa-icon *ngIf="a?.type === 'task'" size="lg" [icon]="faClipboard"></fa-icon>
+          <fa-icon *ngIf="a?.type === 'booking'" size="lg" [icon]="faCalendarCheck"></fa-icon>
+          <fa-icon *ngIf="a?.type === 'default'" size="lg" [icon]="faStickyNote"></fa-icon>
+        </div>
+      </div>
+      <app-card-event [routerLink]="(a?.behavior?.router) ?a?.behavior?.router : null " [data]="a"></app-card-event>
+    </div>
+  </div>
+</div>
+
+<ng-template #emptyAccommodation let-data="data">
+  <div *ngIf="!data?.docs?.length" class="animate__animated animate__fadeIn mt-3 border-0 block-empty-module col-12 text-center
+  ">
+    <div class="mb-2">
+      <img class="img-stander" src="../../../assets/images/undraw_newspaper_k72w.svg" alt="">
+    </div>
+    <h6 class="">{{'TIMELINE.EMPTY' | translate}}</h6>
+    <p class="small">
+      {{'TIMELINE.EMPTY_PLACEHOLDER'|translate}}
+    </p>
+  </div>
+</ng-template>

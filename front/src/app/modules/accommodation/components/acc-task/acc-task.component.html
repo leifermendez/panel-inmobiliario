@@ -1,0 +1,21 @@
+<div>
+  <div class="p-1 tab-title mb-1">
+    {{'ACCOMMODATION.TICKET' |translate}}
+  </div>
+  <div class="in-list">
+    <ng-container *ngTemplateOutlet="emptyAccommodation;context: {data:data}"></ng-container>
+    <app-card-ticket class="cal-cell-row" [routerLink]="['/','task',a?._id]" [data]="a" *ngFor="let a of data?.docs"></app-card-ticket>
+  </div>
+</div>
+<ng-template #emptyAccommodation let-data="data">
+  <div *ngIf="!data?.docs?.length" class="animate__animated animate__fadeIn mt-3 border-0 block-empty-module col-12 text-center
+  ">
+    <div class="mb-2">
+      <img class="img-stander" src="../../../../../assets/images/undraw_to_do_list_a49b.svg" alt="">
+    </div>
+    <h6 class="">{{'TASK_LIST.EMPTY' | translate}}</h6>
+    <p class="small">
+      {{'TASK_LIST.EMPTY_PLACEHOLDER'|translate}}
+    </p>
+  </div>
+</ng-template>

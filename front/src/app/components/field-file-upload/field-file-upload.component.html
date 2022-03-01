@@ -1,0 +1,98 @@
+
+<div class="w-100 d-flex mb-2 col-12 m-0 row">
+
+  <div *ngFor="let fileItem of resultsTmp" class="mr-2 mb-2 position-relative single-close">
+    <div class="card-attach">
+      <button type="button" (click)="removeFile(fileItem)" class="close-remove">
+        <i class="uil uil-times"></i>
+      </button>
+      <div class="body">
+        <div class="text-center icon-padding">
+          <div class="img-preview-thumbnail" *ngIf="['.jpg','.jpeg','.png','.webp','.svg'].includes(fileItem?.fileType)">
+            <img width="50px" [src]="fileItem?.small">
+          </div>
+<!--          <div>-->
+<!--            <a [href]="fileItem?.original" target="_blank">Ver</a>-->
+<!--          </div>-->
+
+                  <div *ngIf="fileType !== 'image'">
+                    <fa-icon *ngIf="['.doc','.docx'].includes(fileItem?.fileType)"
+                             [icon]="faFileWord"></fa-icon>
+                    <fa-icon *ngIf="['.pdf'].includes(fileItem?.fileType)"
+                             [icon]="faFilePdf"></fa-icon>
+                    <fa-icon *ngIf="['.csv','.xls','.xlsx'].includes(fileItem?.fileType)"
+                             [icon]="faFileExcel"></fa-icon>
+                  </div>
+        </div>
+        <div class="footer pt-2">
+          <a [href]="fileItem?.original" class="filename truncate text-dark" target="_blank">
+            <div class="filename truncate">{{fileItem?.fileName}}</div>
+          </a>
+          <a [href]="fileItem?.original" target="_blank" class="small text-muted filename-sub truncate">
+            <div class=" ">{{fileItem?.fileType}}</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mb-2">
+  <input type="hidden" [(ngModel)]="results" [formControl]="formControl">
+  <label>{{field?.templateOptions?.label}}</label>
+  <ngx-file-picker #uploader
+                   [fileMaxCount]="field?.templateOptions?.maxFile"
+                   [adapter]="adapter"
+                   class="form-control position-relative"
+                   [fileExtensions]="field?.templateOptions?.extensions"
+                   [enableCropper]="false"
+                   (uploadSuccess)="onUploadSuccess($event)"
+                   (removeSuccess)="onRemoveSuccess($event)"
+                   [itemTemplate]="myItemTemplate"
+                   (fileAdded)="getType($event)"
+                   [showPreviewContainer]="true">
+    <div class="dropzoneTemplate text-center cal-cell-row">
+      <i class="uil uil-link-add"></i>
+      <small class="text-muted ml-2">{{'GENERAL.DRAG_AND_DROP' | translate}}</small>
+    </div>
+
+  </ngx-file-picker>
+  <div class="form-text text-muted small">
+    {{field?.templateOptions?.description}}
+  </div>
+</div>
+
+<!---- **** TEMPLATE PREVIEW **** --->
+
+<ng-template #myItemTemplate let-fileItem="fileItem" let-uploadProgress="uploadProgress">
+  <div class="loading-parent" *ngIf="(uploadProgress <= 100)">
+    <div class="loading-child">
+      <img src="../../../assets/svg-loading/svg-loaders/oval.svg" alt="">
+    </div>
+  </div>
+  <div class="card-attach">
+    <button type="button" (click)="uploader.removeFile(fileItem)" class="close-remove">
+      <i class="uil uil-times"></i>
+    </button>
+    <div class="body">
+      <div class="text-center icon-padding">
+        <div class="img-preview-thumbnail" *ngIf="getType(this.fileItem).fileType === 'image'">
+          <img width="50px" [src]="getType(this.fileItem).safeUrl">
+        </div>
+
+        <div *ngIf="fileType !== 'image'">
+          <fa-icon *ngIf="['doc','docx'].includes(fileItem.fileName.split('.').pop())"
+                   [icon]="faFileWord"></fa-icon>
+          <fa-icon *ngIf="['pdf'].includes(fileItem.fileName.split('.').pop())"
+                   [icon]="faFilePdf"></fa-icon>
+          <fa-icon *ngIf="['csv','xls','xlsx'].includes(fileItem?.fileName.split('.').pop())"
+                   [icon]="faFileExcel"></fa-icon>
+        </div>
+      </div>
+      <div class="footer pt-2">
+        <div class="filename truncate">{{uploadProgress}} {{fileItem.fileName}}</div>
+        <div class="small text-muted filename-sub truncate">{{fileItem.fileName.split('.').pop()}}</div>
+      </div>
+    </div>
+  </div>
+</ng-template>

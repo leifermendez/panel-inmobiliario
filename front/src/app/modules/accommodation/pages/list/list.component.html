@@ -1,0 +1,208 @@
+<app-header-dashboard></app-header-dashboard>
+<app-side-bar></app-side-bar>
+
+<div class="container-main">
+  <div class="mb-2">
+    <app-history [keySource]="source" [history]="history"></app-history>
+  </div>
+  <ng-container *ngTemplateOutlet="loadingWrapper;context: {loading:loading}"></ng-container>
+  <div class="row ml-0 mr-0 col-12 p-0">
+
+    <ng-container *ngTemplateOutlet="templateUser;context: {data:data,modeView:modeView}"></ng-container>
+    <ng-container *ngTemplateOutlet="templateAdmin;context: {data:data,modeView:modeView}"></ng-container>
+
+    <ng-container *ngTemplateOutlet="emptyAccommodation;context: {data:data}"></ng-container>
+  </div>
+
+</div>
+
+<!--- ********** TEMPLATE FOR USER REGULAR ********** ----->
+<ng-template #templateUser let-data="data" let-mode="modeView">
+  <ng-container *ngIf="mode === 'user'">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 pl-0 mb-2 animation-{{i}} animate__animated animate__fadeIn"
+         [routerLink]="['/','accommodation',a?._id]"
+         *ngFor="let a of data;let i = index;let l = count">
+      <app-card-accommodation [data]="a"></app-card-accommodation>
+    </div>
+  </ng-container>
+</ng-template>
+
+<!--- ********** TEMPLATE FOR ADMIN ********** ----->
+<ng-template #templateAdmin let-data="data" let-mode="modeView">
+  <ngx-datatable
+    *ngIf="mode === 'admin'"
+    #myTable
+    class="material expansible w-100 animate__animated animate__fadeIn"
+    [columnMode]="ColumnMode.force"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    [rowHeight]="65"
+    [rows]="data">
+    <!-- Row Detail Template -->
+    <ngx-datatable-row-detail #myDetailRow [rowHeight]="420" (toggle)="onDetailToggle($event)">
+      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+        <div class="w-100 h-100 position-relative">
+          <ng-container
+            *ngTemplateOutlet="emptyAccommodationSingle;context: {
+            data:(docsDetail$[row?._id]) ? docsDetail$[row?._id][0]:undefined}"></ng-container>
+          <ng-container
+            *ngTemplateOutlet="loadingWrapper;context: {loading:loadingDocsDetail$[row?._id]}"></ng-container>
+
+          <ng-container *ngIf="docsDetail$[row?._id]">
+            <div class="w-100 d-flex  pl-2 pr-2  justify-content-between">
+              <app-chart-line-task [title]="'ACCOMMODATION.BOOKINGS' |translate" class="mr-2"></app-chart-line-task>
+              <app-chart-line-task [title]="'ACCOMMODATION.SETTLEMENTS' |translate" class="mr-0"></app-chart-line-task>
+              <app-chart-pie-task-single [title]="'ACCOMMODATION.TICKET' |translate"
+                                         class="mr-2"></app-chart-pie-task-single>
+            </div>
+            <hr>
+            <div class="w-100 pl-2 pr-2">
+              <div class="pb-2 small">{{'ACCOMMODATION.DOCS' | translate}}</div>
+            </div>
+            <div class="w-100 d-flex  pl-2 pr-2 pb-2" *ngIf="docsDetail$[row?._id]">
+              <div [tooltip]="a?.name" placement="bottom" (click)="openModal(a)" class="mr-2 wrapper-doc"
+                   *ngFor="let a of docsDetail$[row?._id][0]">
+                <div class="single-minimal-docs p-2" [ngClass]="{
+              'percentage-green':(a?.percentage>=90),
+              'percentage-yellow':(a?.percentage<90 && a?.percentage>=49),
+              'percentage-red':(a?.percentage<49)
+              }">
+                  <fa-icon [icon]="faFile" size="lg"></fa-icon>
+                </div>
+              </div>
+            </div>
+            <!--            <hr>-->
+            <!--            <div class="w-100 pl-2 pr-2">-->
+            <!--              <div class="pb-2 small">{{'ACCOMMODATION.SETTLEMENTS' | translate}}</div>-->
+            <!--            </div>-->
+            <!--            <div class="w-100 d-flex  pl-2 pr-2">-->
+            <!--              <div [tooltip]="a?.name" placement="bottom" class="mr-2 wrapper-doc"-->
+            <!--                   *ngFor="let a of []">-->
+            <!--                <div class="single-minimal-docs p-2" [ngClass]="{-->
+            <!--              'percentage-green':(a?.percentage>=90),-->
+            <!--              'percentage-yellow':(a?.percentage<90 && a?.percentage>=49),-->
+            <!--              'percentage-red':(a?.percentage<49)-->
+            <!--              }">-->
+            <!--                  <fa-icon [icon]="faFile" size="lg"></fa-icon>-->
+            <!--                </div>-->
+            <!--              </div>-->
+            <!--            </div>-->
+          </ng-container>
+        </div>
+
+      </ng-template>
+    </ngx-datatable-row-detail>
+    <!-- Column Templates -->
+    <ngx-datatable-column
+      [width]="50"
+      [resizeable]="false"
+      [sortable]="false"
+      [draggable]="false"
+      [canAutoResize]="false"
+    >
+      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+        <a
+          class="expand-icon"
+          href="javascript:void(0)"
+          [class.datatable-icon-right]="!expanded"
+          [class.datatable-icon-down]="expanded"
+          title="Expand/Collapse Row"
+          (click)="toggleExpandRow(row)"
+        >
+        </a>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column [sortable]="false" [name]="'ACCOMMODATION.NAME' |translate">
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        <div class="font-weight-500">{{row?.name}}</div>
+        <div class="text-muted small">{{row?.owner?.name}}</div>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column [sortable]="false" [name]="'ACCOMMODATION.ADDRESS' |translate">
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        <div>{{row?.address}}</div>
+        <div class="text-muted small">{{row?.city}}</div>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column [sortable]="false" [name]="''">
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        <div class="w-100  d-flex justify-content-end pr-3">
+          <button type="button" [routerLink]="['/', 'task', 'new', row?._id]" [tooltip]="'TASK.ADD' |translate"
+                  class="btn btn-menu-call ml-2">
+            <div class="icon">
+              <i class="uil uil-clipboard"></i>
+            </div>
+          </button>
+          <button type="button" [routerLink]="['/', 'accommodation', row?._id,'edit']"
+                  [tooltip]="'BOOKINGS.ADD' |translate"
+                  class="btn btn-menu-call ml-2">
+            <div class="icon">
+              <i class="uil uil-eye"></i>
+            </div>
+          </button>
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+
+  </ngx-datatable>
+</ng-template>
+
+
+<!---- ********** TEMPLATE EMPTY *** -->
+<ng-template #emptyAccommodationSingle let-data="data">
+
+  <div *ngIf="!data?.length" class="  empty-box-inline w-100 h-100">
+    <h6 class="">{{'ACCOMMODATION_LIST.EMPTY' | translate}}</h6>
+  </div>
+</ng-template>
+
+<!--- ********** END TEMPLATE FOR ADMIN ********** ----->
+
+<ng-template #emptyAccommodation let-data="data">
+  <div *ngIf="!data?.length" class="animate__animated animate__fadeIn mt-3 block-empty-module col-12 text-center col-sm-12 offset-sm-0 col-md-10 offset-md-1
+  col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
+    <div class="mb-2">
+      <img class="img-stander" src="../../../../../assets/images/undraw_apartment_rent_o0ut.svg" alt="">
+    </div>
+    <h5 class="">{{'ACCOMMODATION_LIST.EMPTY' | translate}}</h5>
+    <p>
+      {{'ACCOMMODATION_LIST.EMPTY_PLACEHOLDER'|translate}}
+    </p>
+  </div>
+</ng-template>
+
+<ng-template #loadingWrapper let-loading="loading">
+
+  <!--- ****** SHOW FOR LOADING ****** -->
+
+  <div *ngIf="loading === true" class="wrapper-loading-inside">
+    <div class="text-center d-flex flex-column justify-content-center align-items-center">
+      <div class="wrapper-icon">
+        <img class="icon" src="../../../../../assets/images/airbnb-logo.svg" alt="">
+      </div>
+      <div class="p-2">
+        <span class="text-muted small">{{'GENERAL.LOADING'|translate}}</span>
+      </div>
+    </div>
+  </div>
+
+  <!--- ****** SHOW FOR ERRORS ****** -->
+
+  <div *ngIf="(loading?.status)" class="wrapper-loading-inside">
+    <div class="text-center d-flex flex-column justify-content-center align-items-center">
+      <div>
+        <img class="image-error" src="../../../../../assets/images/undraw_blank_canvas_3rbb.svg" alt="">
+      </div>
+      <div class="p-2">
+        <span class="text-muted small">{{'ERRORS.UNDEFINED.TITLE'|translate}}</span>
+        <div class="p-2">
+          <button type="button" [routerLink]="['/','home']"
+                  class="btn btn-primary">{{'GENERAL.BACK'|translate}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

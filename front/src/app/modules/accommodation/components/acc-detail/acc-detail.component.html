@@ -1,0 +1,52 @@
+<div>
+  <div class="preview">
+    <img class="gallery" *ngIf="data?.gallery?.length" [src]="data?.gallery[0].original" alt="">
+    <div class="map-btn hvr-shrink" [style.backgroundImage]="'url('+(data?.location?.coordinates | mapUrl)+')'">
+      <fa-icon [icon]="faMapMarkerAlt"></fa-icon>
+    </div>
+  </div>
+  <div class="body p-2">
+    <div class="title">
+      <h5>{{data?.name}}</h5>
+    </div>
+    <div class="sub-title small">
+      {{data?.address}}
+    </div>
+
+    <div class="brand-logo-zone d-flex w-100 justify-content-start mt-2">
+      <div class="mr-2 mb-1 text-center" *ngFor="let c of data?.channels">
+        <img class="brand-logo" src="../../../../../assets/images/channel-{{c?.value}}.svg" alt="">
+      </div>
+    </div>
+    <div>
+      {{data?.description}}
+    </div>
+  </div>
+
+  <div class=" mt-2 row zone-cells">
+
+    <div class="col-4 cell" *ngFor="let b of panels">
+      <button (click)="gotTo(b)" [disabled]="b?.disable"
+              class="text-center btn btn-default btn-menu-call btn-shadow-default">
+        <!--        <div class="label text-muted">{{b?.name}}</div>-->
+        <div class="icon">
+          <i class="uil  {{b?.icon}}"></i>
+        </div>
+        <div class="value">
+          <span class="mr-2  font-weight-500 ">{{b?.value |translate}}</span>
+        </div>
+
+      </button>
+    </div>
+  </div>
+  <hr class="row">
+  <div class="mt-2 " *ngIf="controls && oauth.getCurrentUser().role.includes('admin')">
+    <button type="button" [routerLink]="['/', 'accommodation', data?._id,'edit']"
+            [tooltip]="'GENERAL.EDIT' |translate"
+            class="btn btn-menu-call ml-2">
+      <div class="icon">
+        <i class="uil uil-pen"></i>
+      </div>
+    </button>
+  </div>
+</div>

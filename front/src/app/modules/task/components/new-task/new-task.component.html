@@ -1,0 +1,147 @@
+<form [formGroup]="form" (submit)="send()">
+  <div class="form-group">
+    <label>{{'TASK.NEW_TITLE' | translate}}</label>
+    <div class="input-group ">
+      <input type="text" class="form-control" formControlName="title"
+             aria-describedby="basic-addon2">
+      <div class="input-group-append">
+        <ng-select [items]="people$"
+                   bindLabel="name"
+                   formControlName="categories"
+                   [required]="true"
+                   [clearable]="false"
+                   [searchable]="false"
+                   [(ngModel)]="selectedPersonId">
+        </ng-select>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <label>{{'TASK.OBSERVATION' | translate}}</label>
+    <div class="description pt-2">
+      <div class="wrapper-text-area">
+        <div class="text-area  ">
+          <quill-editor placeholder="" spellcheck="false" formControlName="observation" customToolbarPosition="top">
+            <div quill-editor-toolbar>
+    <span class="ql-formats">
+      <button class="ql-bold" [title]="'Bold'"></button>
+    </span>
+              <span class="ql-formats">
+      <select class="ql-align" [title]="'Aligment'">
+        <option selected></option>
+        <option value="center"></option>
+        <option value="right"></option>
+        <option value="justify"></option>
+      </select>
+    </span>
+            </div>
+          </quill-editor>
+        </div>
+        <div>
+          <button [disabled]="!form.valid" ngxLoading [textLoading]="'GENERAL.SENDING' | translate"
+                  [textInitial]="'GENERAL.SEND' |translate"
+                  [loadingFlag]="loading"
+                  class="btn hvr-shrink btn-sm btn-menu-call button-send" type="submit">
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="d-flex flex-wrap pt-2">
+      <div *ngFor="let fileItem of resultsTmp" class="mr-2 position-relative single-close">
+        <div class="card-attach">
+          <button type="button" (click)="removeFile(fileItem)" class="close-remove">
+            <i class="uil uil-times"></i>
+          </button>
+          <div class="body">
+            <div class="text-center icon-padding">
+              <div class="img-preview-thumbnail"
+                   *ngIf="['.jpg','.jpeg','.png','.webp','.svg'].includes(fileItem?.fileType)">
+                <img width="50px" [src]="fileItem?.small">
+              </div>
+
+              <div *ngIf="fileType !== 'image'">
+                <fa-icon *ngIf="['.doc','.docx'].includes(fileItem?.fileType)"
+                         [icon]="faFileWord"></fa-icon>
+                <fa-icon *ngIf="['.pdf'].includes(fileItem?.fileType)"
+                         [icon]="faFilePdf"></fa-icon>
+                <fa-icon *ngIf="['.csv','.xls','.xlsx'].includes(fileItem?.fileType)"
+                         [icon]="faFileExcel"></fa-icon>
+              </div>
+            </div>
+            <div class="footer pt-2">
+              <a [href]="fileItem?.original" class="filename truncate text-dark" target="_blank">
+                <div class="filename truncate">{{fileItem.fileName}}</div>
+              </a>
+              <a [href]="fileItem?.original" target="_blank" class="small text-muted filename-sub truncate">
+                <div class=" ">{{fileItem?.fileType}}</div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>{{'TASK.ATTACHMENTS_PLACEHOLDER' | translate}}</label>
+    <ngx-file-picker #uploader
+                     [fileMaxCount]="10"
+                     [adapter]="adapter"
+                     class="form-control position-relative"
+                     [fileExtensions]="filesExtensions"
+                     [enableCropper]="false"
+                     (validationError)="validationError($event)"
+                     (uploadSuccess)="onUploadSuccess($event)"
+                     (removeSuccess)="onRemoveSuccess($event)"
+                     [itemTemplate]="myItemTemplate"
+                     (fileAdded)="getType($event)"
+                     [showPreviewContainer]="true">
+      <div class="dropzoneTemplate text-center cal-cell-row">
+        <i class="uil uil-link-add"></i>
+        <span class="text-muted ml-2">{{'GENERAL.DRAG_AND_DROP' | translate}}</span>
+      </div>
+
+    </ngx-file-picker>
+    <small class="text-muted">{{'ATTACHMENTS.PLACEHOLDER' | translate}}</small>
+  </div>
+
+</form>
+
+<!---- **** TEMPLATE PREVIEW **** --->
+
+<ng-template #myItemTemplate let-fileItem="fileItem" let-uploadProgress="uploadProgress">
+  <div class="loading-parent" *ngIf="(uploadProgress <= 100)">
+    <div class="loading-child">
+      <img src="../../../assets/svg-loading/svg-loaders/oval.svg" alt="">
+    </div>
+  </div>
+  <div class="card-attach">
+    <button type="button" (click)="uploader.removeFile(fileItem)" class="close-remove">
+      <i class="uil uil-times"></i>
+    </button>
+    <div class="body">
+      <div class="text-center icon-padding">
+        <div class="img-preview-thumbnail" *ngIf="getType(this.fileItem).fileType === 'image'">
+          <img width="50px" [src]="getType(this.fileItem).safeUrl">
+        </div>
+
+        <div *ngIf="fileType !== 'image'">
+          <fa-icon *ngIf="['doc','docx'].includes(fileItem.fileName.split('.').pop())"
+                   [icon]="faFileWord"></fa-icon>
+          <fa-icon *ngIf="['pdf'].includes(fileItem.fileName.split('.').pop())"
+                   [icon]="faFilePdf"></fa-icon>
+          <fa-icon *ngIf="['csv','xls','xlsx'].includes(fileItem.fileName.split('.').pop())"
+                   [icon]="faFileExcel"></fa-icon>
+        </div>
+      </div>
+      <div class="footer pt-2">
+        <div class="filename truncate">{{uploadProgress}} {{fileItem.fileName}}</div>
+        <div class="small text-muted filename-sub truncate">{{fileItem.fileName.split('.').pop()}}</div>
+      </div>
+    </div>
+  </div>
+</ng-template>

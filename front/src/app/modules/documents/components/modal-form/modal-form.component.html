@@ -1,0 +1,55 @@
+<ng-container *ngTemplateOutlet="loadingWrapper;context:{loading:loading}"></ng-container>
+<div class="prev-head">
+  <span class="tracking-in-contract">{{initData?.name | translate}}</span>
+</div>
+
+<div class="modal-header pt-1 pb-1">
+  <div class="w-100">
+    <app-sub-header-accommodation  [data]="initData?.accommodation"></app-sub-header-accommodation>
+  </div>
+
+</div>
+<div class="modal-body  p-0">
+
+<!--  <div class="col-12">-->
+<!--    <div class="alert alert-warning">{{'DOCS.ALERT_EDIT' |translate}}</div>-->
+<!--  </div>-->
+<!--  {{disabled |json}}-->
+  <div class="d-flex col-12 p-0 ">
+    <div class="col-12 block-form pt-2 pb-2">
+      <form [formGroup]="form"  #formsDynamic>
+        <formly-form [form]="form" [fields]="fields" [options]="options" [model]="model"></formly-form>
+      </form>
+    </div>
+  </div>
+
+</div>
+<div class="modal-footer">
+  <button class="btn btn-outline-secondary btn-sm" (click)="bsModalRef.hide()" type="button">
+    {{'GENERAL.CANCEL' | translate}}
+  </button>
+  <button *ngIf="!disabled" type="button" (click)="onSubmit()" [disabled]="!form.valid" ngxLoading [loadingFlag]="loadingBtn"
+          [textLoading]="'GENERAL.SENDING' | translate" [textInitial]="'GENERAL.CONTINUE' | translate"
+          class="btn btn-primary btn-sm">
+
+  </button>
+
+
+</div>
+
+<ng-template #loadingWrapper let-loading="loading">
+
+  <!--- ****** SHOW FOR LOADING ****** -->
+
+  <div *ngIf="loading" class="wrapper-loading-inside">
+    <div class="text-center d-flex flex-column justify-content-center align-items-center">
+      <div class="wrapper-icon">
+        <img class="icon" src="../../../../../assets/images/airbnb-logo.svg" alt="">
+      </div>
+      <div class="p-2">
+        <span class="text-muted small">{{'GENERAL.LOADING'|translate}}</span>
+      </div>
+    </div>
+  </div>
+
+</ng-template>

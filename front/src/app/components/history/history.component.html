@@ -1,0 +1,29 @@
+<div class="d-flex justify-content-between">
+  <div>
+    <ul class="list-unstyled m-0 p-0 d-flex">
+      <!--    {{'HISTORY.DASHBOARD' |translate}}-->
+      <li *ngFor="let his of history;" class="list-history">
+        <span class="title">{{his?.name |translate}}</span> <span class="ml-2 mr-2"><fa-icon [icon]="faAngleRight"></fa-icon></span>
+      </li>
+    </ul>
+    <!--  <b>Tickets</b> <span class="ml-2 mr-2"><fa-icon [icon]="faAngleRight"></fa-icon></span> <span>Plaza de Castillas II</span>-->
+
+  </div>
+  <div *ngIf="pagination">
+    <pagination [totalItems]="pagination?.totalDocs"
+                [maxSize]="5"
+                (pageChanged)="changePage($event)"
+                [itemsPerPage]="pagination?.limit"
+                [customPreviousTemplate]="prevTemplate"
+                [customNextTemplate]="nextTemplate">
+    </pagination>
+  </div>
+</div>
+<hr>
+
+<ng-template #prevTemplate>
+  <fa-icon [icon]="faAngleLeft"></fa-icon>
+</ng-template>
+<ng-template #nextTemplate>
+  <fa-icon [icon]="faAngleRight"></fa-icon>
+</ng-template>

@@ -1,0 +1,31 @@
+<div>
+  <div>
+    <span class="small text-muted" timeago [date]="data?.createdAt || 111111"></span>
+  </div>
+  <div class="title truncate">
+    {{data?.title}}
+  </div>
+  <div class="sub-title truncate">
+    <span class="mr-1"><fa-icon [icon]="faHome"></fa-icon></span>{{data?.accommodation?.name}}
+  </div>
+  <div class="body pt-1">
+ {{data?.observation | stripeHtml}}
+ </div>
+  <div class="footer pt-3 w-100 d-flex justify-content-between align-items-center">
+    <div class="w-50 status-ticket">
+      <span class="pending">
+         {{data?.status}}
+      </span>
+    </div>
+    <div class="w-50 d-flex justify-content-end wrapper-icon">
+      <div class="icon-zone mr-3">
+        <fa-icon [icon]="faCommentAlt"></fa-icon>
+        <span class="count">{{data?.comments?.length}}</span>
+      </div>
+      <div class="icon-zone mr-3">
+        <fa-icon [icon]="faPaperclip"></fa-icon>
+        <span class="count">{{data?.attachment?.length}}</span>
+      </div>
+    </div>
+  </div>
+</div>

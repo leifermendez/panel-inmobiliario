@@ -1,0 +1,83 @@
+@import '../../../shared.scss';
+
+app-card-event{
+  display: block;
+  cursor: pointer;
+  background-color: white;
+  padding: 1.25rem .35rem 1.25rem;
+  border-radius:$border-radius;
+  border: solid 1px $border-color-1;
+  transition: all .1s;
+
+}
+
+app-card-event:hover{
+  box-shadow: $shadow-custom;
+  border: solid 1px $border-color;
+  .wrapper-icon{
+    opacity: 1;
+  }
+}
+
+app-card-event .status-ticket{
+  margin-right: .25rem;
+  font-size: 85%;
+  font-weight: 500;
+  .pending{
+    padding: 0 .25rem;
+    border-radius: $border-radius;
+    background: #b3d2fd4f;
+    border: solid 1px #81b6ff;
+  }
+}
+
+app-card-event .title{
+  font-weight: 500;
+  font-size: 1.1rem;
+  //margin-bottom: .25rem;
+}
+app-card-event .body{
+  font-size: 85%;
+  color: #4a4a4a;
+  letter-spacing: 0.2px;
+  line-height: 20px;
+  overflow: hidden;
+  display: -webkit-box;
+  min-height: 30px;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+app-card-event .badge-accommodation{
+  background: rgba(194, 227, 254, 0.31);
+  padding: 0 0.25rem;
+  border-radius: $border-radius;
+  border: solid 1px #b3d2fe;
+  color: #505050;
+}
+
+app-card-event .count{
+  background: #0168FA;
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  font-size: 10px;
+  color: white;
+  font-weight: 500;
+  border-radius: 12px;
+  text-align: center;
+  margin-left: -7px;
+  margin-top: -5px;
+}
+
+app-card-event .wrapper-icon{
+  transition: all .1s;
+  opacity: .3;
+}
+
+app-card-event img{
+  border-radius: $border-radius;
+  max-width: 85%;
+  max-height: 400px;
+  object-fit: contain;
+}

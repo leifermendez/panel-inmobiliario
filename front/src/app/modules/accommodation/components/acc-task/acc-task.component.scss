@@ -1,0 +1,24 @@
+@import '../../../../../shared.scss';
+
+app-card-ticket{
+  position: relative;
+  border-color: transparent;
+  border-radius: 0;
+}
+app-card-ticket:hover{
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: $border-color-1;
+}
+
+.tab-title{
+  background: $bg-white;
+  position: absolute;
+  width: 100%;
+  border-bottom: solid 1px $border-color-1;
+  z-index: 3;
+}
+.in-list{
+  padding-top: 1.8rem;
+}

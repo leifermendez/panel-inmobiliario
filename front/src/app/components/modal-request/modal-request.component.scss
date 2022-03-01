@@ -1,0 +1,88 @@
+@import '../../../shared.scss';
+
+
+.modal-header {
+  text-transform: uppercase;
+}
+
+::ng-deep {
+  @media (min-width: 460px) {
+    .bs-datepicker-head {
+      min-width: 30rem;
+    }
+  }
+
+
+  bs-datepicker-inline{
+    display: flex;
+    justify-content: center;
+  }
+
+  .bs-datepicker-container {
+    padding: 0;
+  }
+
+  .bs-datepicker {
+    box-shadow: 0 0 0 transparent;
+  }
+
+  .bs-datepicker-body table td span {
+    font-size: 15px;
+  }
+
+  .bs-datepicker-body table.days span {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+  }
+
+  .bs-datepicker-body {
+    border-width: 0;
+  }
+
+  .bs-datepicker-body table td span {
+    border-radius: $border-radius;
+  }
+  .ng-select-opened{
+    ng-dropdown-panel{
+      border:solid 1px $border-color-1;
+      //box-shadow: $shadow-custom;
+    }
+  }
+  .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked{
+    background-color: $base-color-2;
+  }
+  .ng-select.ng-select-opened>.ng-select-container, .ng-select .ng-select-container{
+    border-radius: $border-radius;
+    border:solid 1px $border-color-1
+  }
+  .ng-select{
+    .card-body ,.card{
+      border-radius: $border-radius;
+    }
+    .card{
+      border:solid 1px $border-color-1
+    }
+  }
+  .theme-default .bs-datepicker-body table td span.selected, .theme-default .bs-datepicker-body table td.selected span,
+  .theme-default .bs-datepicker-body table td span[class*="select-"]:after, .theme-default
+  .bs-datepicker-body table td[class*="select-"] span:after {
+    background-color: $base-color-primary;
+  }
+
+  .theme-default .bs-datepicker-head {
+    background-color: $bg-white;
+  }
+
+  .bs-datepicker-head button {
+    color: #222222;
+  }
+}
+
+.thankYouPage {
+  .img {
+    width: 15rem;
+    height: 15rem;
+    object-fit: contain;
+  }
+}

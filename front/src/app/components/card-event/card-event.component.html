@@ -1,0 +1,7 @@
+<div class="text-center">
+  <div class="title truncate">
+    {{data?.title}}
+  </div>
+  <div *ngIf="data?.observation " [innerHTML]="data?.observation" class="body pt-1">
+  </div>
+</div>

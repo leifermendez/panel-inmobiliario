@@ -1,0 +1,152 @@
+<app-header-dashboard></app-header-dashboard>
+<app-side-bar></app-side-bar>
+
+<div class="container-main">
+  <div class="mb-2">
+    <app-history [history]="history"></app-history>
+  </div>
+  <ng-container *ngTemplateOutlet="loadingWrapper;context: {loading:loading}"></ng-container>
+  <div class="row ml-0 mr-0 col-12 p-0">
+    <!--- ********** BLOCK 1 ************ --->
+
+    <div
+      class=" col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 p-0 block-body animation-1 animate__animated animate__fadeIn">
+      <app-sub-header-accommodation *ngIf="data$?.accommodation" [data]="data$?.accommodation"></app-sub-header-accommodation>
+      <div class="p-2">
+        <div class="text-muted small pb-2">{{data$?.createdAt | date}}</div>
+        <div>
+          <h6 class="truncate mt-1 mb-2">{{data$?.guest?.name}} {{data$?.guest?.lastName}}</h6>
+        </div>
+        <div class="mt-2 d-flex justify-content-between w-100">
+          <div class="w-50">
+            <div class="truncate small"><span class="font-weight-bold">
+            {{'CARD_BOOKING.LOCALIZATOR' | translate}}:</span> {{data$?.localizator}}</div>
+            <div class="truncate small"><span class="font-weight-bold">
+            {{'CARD_BOOKING.COUNTRY' | translate}}:</span> {{data$?.guest?.nationality}}</div>
+            <div class="truncate small"><span class="font-weight-bold">
+            {{'CARD_BOOKING.LANGUAGE' | translate}}:</span> {{data$?.guest?.language}}</div>
+          </div>
+          <div class="w-50">
+            <div class="truncate small"><span class="font-weight-bold">
+            {{'CARD_BOOKING.EMAIl' | translate}}:</span> {{data$?.guest?.email}}</div>
+            <div class="truncate small"><span class="font-weight-bold">
+            {{'CARD_BOOKING.PHONE' | translate}}:</span> {{data$?.guest?.phone}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 mt-2 row ml-0 mr-0 pl-0 pr-0 zone-cells">
+        <div class="col-4 cell">
+          <div class="text-center">
+            <div class="label text-muted">{{'BOOKINGS.PORTAL' | translate}}</div>
+            <div class="icon">
+              <i class="uil  uil-desktop-cloud-alt"></i>
+            </div>
+            <div class="value">{{data$?.portal}}</div>
+          </div>
+        </div>
+        <div class="col-4 cell">
+          <div class="text-center">
+            <div class="label text-muted">{{'BOOKINGS.ADULTS' | translate}}</div>
+            <div class="icon">
+              <i class="uil uil-users-alt"></i>
+            </div>
+            <div class="value">{{data$?.adults}}</div>
+          </div>
+        </div>
+        <div class="col-4 cell">
+          <div class="text-center">
+            <div class="label text-muted">{{'BOOKINGS.KIDS' | translate}}</div>
+            <div class="icon">
+              <i class="uil uil-kid"></i>
+            </div>
+            <div class="value">{{data$?.kids}}</div>
+          </div>
+        </div>
+        <div class="col-4 cell">
+          <div class="text-center">
+            <div class="label text-muted">{{'BOOKINGS.CHECK-IN' | translate}}</div>
+            <div class="icon">
+              <i class="uil uil-calendar-alt"></i>
+            </div>
+            <div class="value">{{data$?.checkIn | date:'dd / MM'}}</div>
+          </div>
+        </div>
+        <div class="col-4 cell">
+          <div class="text-center">
+            <div class="label text-muted">{{'BOOKINGS.CHECK-OUT' | translate}}</div>
+            <div class="icon">
+              <i class="uil uil-calender"></i>
+            </div>
+            <div class="value">{{data$?.checkOut | date:'dd / MM'}}</div>
+          </div>
+        </div>
+        <div class="col-4 cell">
+          <div class="text-center">
+            <div class="label text-muted">{{'BOOKINGS.NIGHTS' | translate}}</div>
+            <div class="icon">
+              <i class="uil uil-moon"></i>
+            </div>
+            <div class="value">{{data$?.nights}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--- ********** BLOCK 2 ************ --->
+    <div
+      class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 p-0 block-body animation-2 animate__animated animate__fadeIn">
+      <ng-container *ngTemplateOutlet="emptyAccommodation;context: {data:data$?.comments}"></ng-container>
+      <div *ngFor="let t of []">
+        <app-card-ticket></app-card-ticket>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--- **** EMPTY COMMENTS **** -->
+<ng-template #emptyAccommodation let-data="data">
+  <div *ngIf="!data?.length" class="animate__animated animate__fadeIn mt-3 border-0 block-empty-module col-12 text-center
+  ">
+    <div class="mb-2">
+      <img class="img-stander" src="../../../../../assets/images/undraw_personal_opinions_g3kr.svg" alt="">
+    </div>
+    <h6 class="">{{'TASK_LIST.EMPTY' | translate}}</h6>
+    <p class="small">
+      {{'TASK_LIST.EMPTY_PLACEHOLDER'|translate}}
+    </p>
+  </div>
+</ng-template>
+
+<ng-template #loadingWrapper let-loading="loading">
+
+  <!--- ****** SHOW FOR LOADING ****** -->
+
+  <div *ngIf="loading === true" class="wrapper-loading-inside">
+    <div class="text-center d-flex flex-column justify-content-center align-items-center">
+      <div class="wrapper-icon">
+        <img class="icon" src="../../../../../assets/images/airbnb-logo.svg" alt="">
+      </div>
+      <div class="p-2">
+        <span class="text-muted small">{{'GENERAL.LOADING'|translate}}</span>
+      </div>
+    </div>
+  </div>
+
+  <!--- ****** SHOW FOR ERRORS ****** -->
+
+  <div *ngIf="(loading?.status)" class="wrapper-loading-inside">
+    <div class="text-center d-flex flex-column justify-content-center align-items-center">
+      <div>
+        <img class="image-error" src="../../../../../assets/images/undraw_blank_canvas_3rbb.svg" alt="">
+      </div>
+      <div class="p-2">
+        <span class="text-muted small">{{'ERRORS.UNDEFINED.TITLE'|translate}}</span>
+        <div class="p-2">
+          <button type="button" [routerLink]="['/','home']"
+                  class="btn btn-primary">{{'GENERAL.BACK'|translate}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

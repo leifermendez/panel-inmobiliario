@@ -1,0 +1,43 @@
+<div [@enterAnimation] *ngIf="notificationsService?.openPanel"
+     class="parent-notifications col-xl-3 pl-0 pr-0 col-lg-6 col-12  ">
+  <div class="pt-2 d-flex justify-content-between">
+    <h6 class="pl-2 pr-2">{{'NOTIFICATIONS.TITLE'| translate}}</h6>
+    <div class="pl-2 pr-2 mr-2 cal-cell-row"
+         (click)="notificationsService.openPanel = !notificationsService.openPanel ">
+      <div>
+        <span><i class="uil uil-multiply"></i></span>
+      </div>
+    </div>
+  </div>
+  <div class="wrapper-notifications">
+    <hr class="row">
+    <div class="w-100">
+      <ul *ngIf="notificationsService.data$?.length" class="list-unstyled  w-100">
+        <li class="d-flex col-12 pb-2" routerLink="{{a?.url}}" *ngFor="let a of notificationsService.data$">
+          <div class="w-100 pt-1 pb-1 s">
+            <div class="small text-muted w-100 text-right" timeago *ngIf="a?.createdAt" [date]="a?.createdAt">Sep 10
+            </div>
+            <div class="truncate w-100">{{a?.title}}</div>
+            <div class="small w-100">{{a?.body}}</div>
+            <div class="event-zone w-100 pt-2 " *ngIf="a?.event" [innerHTML]="a?.event"></div>
+          </div>
+        </li>
+      </ul>
+
+      <div *ngIf="!notificationsService.data$?.length" class="w-100 d-flex justify-content-center p-4">
+
+        <div class="text-center">
+          <div>
+            <img class="img-notification" src="../../../assets/images/undraw_happy_music_g6wc.svg" alt="">
+          </div>
+          <div>
+            <h6>{{'NOTIFICATIONS.NOT_EMPTY' |translate}}</h6>
+            <small>{{'NOTIFICATIONS.NOT_EMPTY_LARGE' |translate}}</small>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

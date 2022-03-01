@@ -1,0 +1,51 @@
+@import '../../../shared.scss';
+
+.parent-notifications {
+  display: block;
+  //width: 100px;
+  height: 80%;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background: $bg-white;
+  z-index: 99;
+  box-shadow: $shadow-custom-lg;
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
+  li{
+    cursor: pointer;
+    border-bottom: solid 1px $border-color-1;
+  }
+  li:last-child{
+    border-bottom: solid 0px $border-color-1;
+  }
+  li:hover{
+    box-shadow: $shadow-custom;
+    border: solid 0px $border-color;
+  }
+}
+
+.check {
+  color: lightgray;
+}
+
+.check.active {
+  color: #6ab04c;
+}
+.event-zone{
+  img{
+    width: 100%;
+    object-fit: contain;
+    max-height: 250px;
+    max-width: 250px;
+  }
+}
+.wrapper-notifications{
+  height: 100%;
+  overflow-y: auto;
+  .img-notification{
+    width: 10rem;
+    height: 10rem;
+    object-fit: contain;
+  }
+}

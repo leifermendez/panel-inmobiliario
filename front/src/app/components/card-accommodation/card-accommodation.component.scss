@@ -1,0 +1,81 @@
+@import '../../../shared.scss';
+
+:host {
+  cursor: pointer;
+  display: block;
+  background-color: white;
+  padding: .35rem;
+  border-radius: $border-radius;
+  border: solid 1px $border-color-1;
+  transition: all .1s;
+}
+
+:host:hover {
+  box-shadow: $shadow-custom;
+  border: solid 1px $border-color;
+
+  .wrapper-icon {
+    opacity: 1;
+  }
+}
+
+.brand-logo-zone > div {
+  padding: .15rem;
+  border-radius: $border-radius;
+  border: solid 1px #f7f7f7;
+  background-color: #fdfdfd;
+}
+
+.brand-logo {
+  height: 18px;
+  max-width: 70px;
+  background-size: contain;
+  //background: red;
+}
+
+.map {
+  right: 0;
+  background: #ffffff;
+  width: 100px;
+  height: 100%;
+  position: absolute;
+
+  .in-map {
+    width: 100%;
+    height: 100%;
+    background-color: #f3f3f3;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-top-right-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+  }
+}
+
+.title {
+  font-weight: 500;
+}
+
+.accommodation {
+  width: 100%;
+  height: 115px;
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: $border-radius;
+  background-image: url("../../../assets/images/placeholder-accommodation.png");
+}
+
+.body {
+
+}
+
+
+.sub-title {
+  text-rendering: optimizeLegibility;
+  font-size: 85%;
+  color: #4a4a4a;
+  letter-spacing: 0.2px;
+  line-height: 20px
+}

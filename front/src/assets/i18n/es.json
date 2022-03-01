@@ -1,0 +1,293 @@
+{
+  "GENERAL": {
+    "FIND": "Buscar...",
+    "CONTINUE": "Continuar",
+    "LOADING": "Cargando contenido",
+    "SENDING": "Enviando..",
+    "SEND": "Enviar",
+    "BACK": "Volver",
+    "ACCEPT": "Aceptar",
+    "CANCEL": "Cancelar",
+    "SKIP": "Omitir",
+    "NEXT": "Siguiente",
+    "EDIT": "Editar",
+    "FINISH": "Entendido!",
+    "LETS_GO": "Comenzar",
+    "DRAG_AND_DROP": "Arrastrar y soltar"
+  },
+  "AVANTIO": {
+    "LOGIN_LINK": "http://app.avantio.com/"
+  },
+  "FORGOT_PAGE": {
+    "RE_SEND": "Volver a enviar",
+    "TITLE": "Olvidsate la contraseña",
+    "TITLE_SEND": "Revisa tu email",
+    "SUB_TITLE": "Recupera tu contraseña",
+    "SUB_TITLE_SEND": "Hemos enviado un correo con las instrucciones"
+  },
+  "RESET_PAGE": {
+    "TITLE": "Asigna nueva contraseña",
+    "SUB_TITLE": "Ingresa una nueva contraseña",
+    "PASSWORD": "Contraseña",
+    "CONFIRM_PASSWORD": "Confirmar contraseña"
+  },
+  "AUTH": {
+    "USERNAME": "Username",
+    "PASSWORD": "Password",
+    "LOG_IN": "Iniciar sesion",
+    "AVANTIO_TITLE": "Accede a tu sistema de reservas"
+  },
+  "ERRORS": {
+    "UNDEFINED": {
+      "TITLE": "ALGO OCURRIÓ",
+      "TEXT": "Ocurrió un problema no esperado. Estamos notificando al administrador."
+    },
+    "UNAUTHORIZED": {
+      "TITLE": "NO AUTORIZADO",
+      "TEXT": "El usuario no tiene los permisos necesarios para hacer uso del módulo"
+    },
+    "USER_DOES_NOT_EXIST": {
+      "TITLE": "USUARIO NO ENCONTRADO",
+      "TEXT": "El usuario no se encontró en nuestros registros"
+    },
+    "WRONG_PASSWORD": {
+      "TITLE": "CONTRASEÑA INCORRECTA",
+      "TEXT": "El correo electronico o contraseña son incorrectos. Vuelve a intentarlo"
+    },
+    "EMAIL_ALREADY_EXISTS": {
+      "TITLE": "CORREO YA EXISTE",
+      "TEXT": "Estás intentando usar un correo ya existente, procura usar otro o recuperar tu contraseña"
+    }
+  },
+  "REQUEST": {
+    "CALL": {
+      "TEXT": "Recuerda la hora y fecha que seleccionaste se confirmara vía email.",
+      "THANKYOU": "Tu solicitud está en proceso y pronto será confirmada.",
+      "THANKYOU_PLACEHOLDER": "También puedes conseguir más información en nuestro portal de ayuda"
+    },
+    "VISIT": {
+      "TEXT": "Selecciona el piso"
+    }
+  },
+  "SIGN_UP": {
+    "TITLE": "Registrar",
+    "NAME": "Nombre",
+    "EMAIL": "Email",
+    "EMAIL_PLACEHOLDER": "Nunca compartiremos tu correo electrónico con nadie más.",
+    "RE_PASSWORD": "Repetir Contraseña",
+    "PASSWORD": "Contraseña",
+    "OR": "O",
+    "SUB_TITLE": "Todo el control de tu piso en un solo lugar",
+    "TERMS_INFO": "Al hacer clic en Crear una cuenta a continuación, aceptas nuestros términos de servicio y la declaración de privacidad.",
+    "TERMS_POLICY": "Aceptar términos y condiciones",
+    "ALREADY_ACCOUNT": "¿Ya tienes una cuenta?",
+    "SIGN_UP": "Iniciar sesion",
+    "PASSWORD_CONDITIONS": "Tu contraseña debe tener entre 8 y 20 caracteres, contener letras y números, y no debe contener espacios, caracteres especiales o emoji.",
+    "CONTINUE": "Continuar",
+    "GMAIL": "Google",
+    "LINKEDIN": "Linkedin"
+  },
+  "ATTACHMENTS": {
+    "PLACEHOLDER": "Máximo 10 archivos, Formatos permitidos .png .jpeg .jpg .xls .xlsx .docs .doc .pdf"
+  },
+  "SIGN_IN": {
+    "SIGN_IN": "Crear cuenta",
+    "TITLE": "Entrar",
+    "EMAIL": "Email",
+    "OR": "O",
+    "PASSWORD": "Contraseña",
+    "EMAIL_PLACEHOLDER": "Nunca compartiremos tu correo electrónico con nadie más.",
+    "SUB_TITLE": "Todo el control de tu piso en un solo lugar",
+    "TERMS_INFO": "By clicking Create an account below, you agree to our terms of service and privacy statement.",
+    "FORGOT_PASSWORD": "Olvide mi contraseña",
+    "TERMS_POLICY": "Aceptar terminos",
+    "PASSWORD_CONDITIONS": "Tu contraseña debe tener entre 8 y 20 caracteres, contener letras y números, y no debe contener espacios, caracteres especiales o emoji.",
+    "ALREADY_ACCOUNT": "¿No tienes una cuenta?"
+  },
+  "STARTED": {
+    "REGISTER": {
+      "EMAIL": "Correo",
+      "NAME": "Nombre",
+      "LAST_NAME": "Apellidos"
+    }
+  },
+  "MENU": {
+    "REQUEST_PHONE": "Solicitar llamada",
+    "EMAIL_SEND": "Enviar mensaje a soporte",
+    "REQUEST_VISIT": "Solicitar visita",
+    "REQUEST_AVANTIO": "Reservas"
+  },
+  "DOCUMENTS": {
+    "EDIT": "Editado por:"
+  },
+  "DASHBOARD": {
+    "CALENDAR": "Calendario",
+    "NOTIFICATION": "Notificaciones",
+    "DOCUMENTS": "Documentación",
+    "EVENTS": "Eventos",
+    "MODAL": {
+      "TYPING": "Hola! Escribe tu mensaje",
+      "REQUEST_PHONE": "Solicitar llamada",
+      "EMAIL_SEND": "Enviar mensaje a soporte",
+      "REQUEST_VISIT": "Solicitar visita",
+      "REQUEST_AVANTIO": "Ver en Avantio"
+    },
+    "HOME": {
+      "WELCOME": "Bienvenido a tú panel",
+      "TEXT": "Nuestro sistema de host te guiará por sus módulos"
+    }
+  },
+  "TASK": {
+    "ADD": "Crear ticket",
+    "NEW_TITLE": "Introduzca título y categoría",
+    "OBSERVATION": "Describe tu solicitud o requerimiento",
+    "NEW_TITLE_PLACEHOLDER": "Ingresa un título explicativo",
+    "ATTACHMENTS_PLACEHOLDER": "Adjuntar archivo o documento",
+    "TOAST": {
+      "TITLE": "Ticket agregado",
+      "TEXT": "El ticket se agregó de forma correcta"
+    }
+  },
+  "BOOKINGS": {
+    "ADD": "Crear reserva",
+    "ADULTS": "Adultos",
+    "CHECK-IN": "Check In",
+    "CHECK-OUT": "Check Out",
+    "NIGHTS": "Noches",
+    "KIDS": "Niños",
+    "PORTAL": "Portal"
+  },
+  "HISTORY": {
+    "DASHBOARD": "Resumen",
+    "TASKS": "Tickets",
+    "TASK": "Ticket",
+    "ACCOMMODATION": "Piso",
+    "BOOKINGS": "Reservaciones",
+    "BOOKING": "Reservacion",
+    "SETTLEMENTS": "Liquidaciones",
+    "SETTLEMENT": "Liquidación"
+  },
+  "CARD_BOOKING": {
+    "ACCOMMODATION": "Piso",
+    "COUNTRY": "Nacionalidad",
+    "LOCALIZATOR": "Localizador",
+    "EMAIl": "Email",
+    "PHONE": "Telefono",
+    "LANGUAGE": "Idioma"
+  },
+  "ACCOMMODATION": {
+    "RESUME": "Resumen",
+    "TICKET": "Tickets",
+    "BOOKINGS": "Reservas",
+    "NAME": "Nombre",
+    "ADDRESS": "Dirección",
+    "STATUS": "Estatus",
+    "SAVE": "Guardar",
+    "STATE": "Provincia",
+    "CITY": "Ciudad",
+    "COUNTRY": "País",
+    "ADDRESS_OPTIONAL": "Dirección opcional",
+    "CHANNELS": "Canales",
+    "SETTLEMENTS": "Liquidaciones",
+    "DOCS": "Documentación",
+    "TOAST": {
+      "TITLE": "Información actualizada",
+      "TEXT": "Piso actualizado de forma correcta"
+    }
+  },
+  "TIMELINE": {
+    "EMPTY": "No se han encontrado actividades",
+    "EMPTY_PLACEHOLDER": "Lee más sobre cómo funciona el panel host"
+  },
+  "DASHBOARD_DOCS": {
+    "EMPTY": "Documentación al día",
+    "EMPTY_PLACEHOLDER": "Lee más sobre cómo funciona el panel host"
+  },
+  "ACCOMMODATION_LIST": {
+    "EMPTY": "Qué solitario está esto",
+    "EMPTY_PLACEHOLDER": "Comienza a generar ingresos registrando tus pisos"
+  },
+  "TASK_LIST": {
+    "EMPTY": "Todo en orden",
+    "EMPTY_PLACEHOLDER": "Puedes visitar nuestro portal de ayuda para mayor información"
+  },
+  "BOOKING_LIST": {
+    "EMPTY": "No tienes datos",
+    "EMPTY_PLACEHOLDER": "Comienza a generar ingresos registrando tus pisos"
+  },
+  "SETTLEMENT_LIST": {
+    "VIEW": "Liquidaciones",
+    "EMPTY": "No tienes datos",
+    "EMPTY_PLACEHOLDER": "Comienza a generar ingresos registrando tus pisos"
+  },
+  "ONBOARDING": {
+    "TITLE": "On Boarding",
+    "SUB_TITLE": "Recuerda que hay que ser los más detallado posible en los campos de texto abierto.",
+    "SEND": "Continuar",
+    "THANK_YOU": "Gracias por formar parte de Alterhome",
+    "THANK_YOP_PLACEHOLDER": "Te hemos enviado un mail con el acceso. Recuerda revisar tu bandeja de correos no deseados",
+    "STEPS": {
+      "REGISTER": "Registro",
+      "TERMS": "Términos y Condiciones",
+      "ONBOARDING": "On Boarding"
+    }
+  },
+  "NOTIFICATIONS": {
+    "TITLE": "Notificaciones",
+    "NOT_EMPTY": "No tienes notificaciones",
+    "NOT_EMPTY_LARGE": "Te estaremos avisando de cualquier novedad por medio de notificaciones"
+  },
+  "MENU_SIDE": {
+    "HOME": "Inicio",
+    "ACCOMMODATIONS": "Pisos",
+    "TASKS": "Tickets",
+    "BOOKINGS": "Reservaciones",
+    "SETTLEMENTS": "Liquidaciones",
+    "FAQ": "Ayuda",
+    "BALANCE": "Balance",
+    "LOGOUT": "Salir"
+  },
+  "DOCS": {
+    "ALERT_EDIT": "El siguiente documento ya fue editado en su momento. Cualquier modificación posterior se registrará y puede ser perjudicial"
+  },
+  "COPILOT": {
+    "IMPORT_DUMMY_TOAST": {
+      "TOAST": {
+        "TITLE": "PROCESO COMPLETADO",
+        "TEXT": "¡Se cargó información de prueba correctamente!"
+      }
+    },
+    "WELCOME": {
+      "TITLE": "Bienvenido a tu panel",
+      "TEXT": "Estamos muy felices de que formes parte de nuestra exclusiva familia de Host. A continuación te guiaremos por tu\n      panel de control."
+    },
+    "HOME": {
+      "TITLE": "Resumen general",
+      "TEXT": "Para facilitar el acceso, hemos incorporado en el panel principal un calendario de eventos, reservaciones y tareas relacionadas con tus pisos. Además encontrarás la documentación de importancia"
+    },
+    "ACCOMMODATION": {
+      "TITLE": "Pisos",
+      "TEXT": "Encuentra de forma ágil y rápida tareas, documentación, liquidaciones y reservaciones de cada uno de tus pisos."
+    },
+    "TASK": {
+      "TITLE": "Tickets",
+      "TEXT": "Haz seguimiento de las tareas realizadas en cada de uno de tus pisos. Puedes además crear tareas de Mantenimiento entre otras."
+    },
+    "BOOKING": {
+      "TITLE": "Reservas",
+      "TEXT": "Detalla cada una de las reservas que se gestionaron en tus pisos. Podrás encontrar datos de interés"
+    },
+    "SETTLEMENTS": {
+      "TITLE": "Liquidaciones",
+      "TEXT": "Descargar y obtén las liquidaciones de cada mes relacionadas a tus pisos"
+    },
+    "HELP": {
+      "TITLE": "Preguntas frecuentes",
+      "TEXT": "Si tienes dudas recuerda que puedes visitar nuestra plataforma de preguntas frecuentes, donde muy seguramente encontraras toda la información necesaria para aclarar las dudas."
+    },
+    "IMPORT_DUMMY": {
+      "TITLE": "Datos de prueba",
+      "TEXT": "A continuación generaremos información ficticia correspondiente a cada uno de los módulos con propósito de aprendizaje. Podrás interactuar de forma segura con el panel y descubrir sus funciones"
+    }
+  }
+}

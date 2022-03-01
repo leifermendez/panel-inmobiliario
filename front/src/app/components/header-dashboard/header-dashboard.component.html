@@ -1,0 +1,70 @@
+<app-first-stepper></app-first-stepper>
+<div class="d-flex justify-content-between align-items-center w-100">
+  <div class="text-logo  w-50">
+    <div class="pl-4 w-100 d-none d-sm-block">
+      <button (click)="dashboard.openSearch()" type="button" class="btn-search-input  d-flex justify-content-between">
+        <span>{{'GENERAL.FIND' | translate}}</span>
+        <span><fa-icon [icon]="faSearch"></fa-icon></span>
+      </button>
+    </div>
+  </div>
+  <div class="text-logo  w-50 d-none d-sm-block">
+    <div class="text-right mr-4">
+      <!-- <button type="button" (click)="dashboard.openLoginExternal({title:'DASHBOARD.MODAL.REQUEST_VISIT'},
+            {mode:'visit'})"
+              [tooltip]="'MENU.REQUEST_AVANTIO'|translate" class="btn btn-default btn-menu-call ml-2">
+        <i class="uil uil-calendar-alt"></i>
+      </button> -->
+<!--      <a [href]="'AVANTIO.LOGIN_LINK' | translate" target="_blank"-->
+<!--         [tooltip]="'MENU.REQUEST_AVANTIO'|translate" class="btn btn-default btn-menu-call ml-2">-->
+<!--        <i class="uil uil-calendar-alt"></i>-->
+<!--      </a>-->
+ 
+            <button type="button" (click)="dashboard.openRequest({title:'DASHBOARD.MODAL.REQUEST_VISIT'},
+            {mode:'visit'})"
+                    [tooltip]="'MENU.REQUEST_VISIT'|translate" class="btn btn-default btn-menu-call ml-2">
+              <i class="uil uil-house-user"></i>
+            </button>
+            <button type="button" (click)="dashboard.openRequest({title:'DASHBOARD.MODAL.EMAIL_SEND'})"
+                    [tooltip]="'MENU.EMAIL_SEND'|translate" class="btn btn-default btn-menu-call ml-2">
+              <i class="uil uil-envelope-upload"></i>
+            </button>
+      <button type="button" (click)="notificationsService.openPanel = !notificationsService.openPanel"
+              class="btn btn-default hvr-buzz-out btn-menu-call ml-2">
+        <i class="uil uil-bell"></i>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- MOBIL --->
+  <div class="d-block d-sm-none ">
+    <div class="btn-group" dropdown placement="bottom right">
+      <button id="button-alignment" dropdownToggle type="button"
+              class="btn btn-default btn-menu-call" aria-controls="dropdown-alignment">
+        <i class="uil uil-bars"></i>
+      </button>
+      <ul id="dropdown-alignment" *dropdownMenu class="dropdown-menu dropdown-menu-right"
+          role="menu" aria-labelledby="button-alignment">
+        <li role="menuitem">
+          <a class="dropdown-item" target="_blank"
+             [href]="'AVANTIO.LOGIN_LINK' | translate">{{'MENU.REQUEST_AVANTIO'|translate}}</a>
+        </li>
+        <li role="menuitem">
+          <a class="dropdown-item">{{'MENU.REQUEST_PHONE'|translate}}</a>
+        </li>
+        <li role="menuitem">
+          <div class="dropdown-item"
+               (click)="dashboard.openRequest({title:'DASHBOARD.MODAL.REQUEST_VISIT'},
+      {mode:'visit'})">{{'MENU.REQUEST_VISIT'|translate}}</div>
+        </li>
+        <li role="menuitem">
+          <div class="dropdown-item"
+               (click)="notificationsService.openPanel = !notificationsService.openPanel">
+            {{'DASHBOARD.NOTIFICATION'|translate}}</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div>

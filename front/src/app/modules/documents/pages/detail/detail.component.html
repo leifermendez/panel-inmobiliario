@@ -1,0 +1,16 @@
+<app-header-dashboard></app-header-dashboard>
+<app-side-bar></app-side-bar>
+
+<div class="container-main">
+  <div>
+    <app-history [history]="history"></app-history>
+  </div>
+  <div class="row ml-0 mr-0 col-12 p-0">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+    </form>
+  </div>
+
+</div>
+
+

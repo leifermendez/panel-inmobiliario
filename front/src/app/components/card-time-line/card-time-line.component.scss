@@ -1,0 +1,74 @@
+@import '../../../shared.scss';
+
+app-card-event, app-card-event:hover, app-card-ticket, app-card-ticket:hover {
+  //box-shadow: 0 0 0 transparent;
+  border-color: transparent;
+  border-radius: 0;
+  //border-top: solid 0px $border-color-1;
+  //border-bottom: solid 1px $border-color-1;
+
+}
+.icon-section{
+  color: white;
+  width: 35px;
+  height: 35px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin-bottom: .5rem;
+}
+.date-timeline {
+  position: relative;
+  margin-bottom: .5rem;
+  margin-top: 2rem;
+}
+
+.date-timeline:before {
+  content: "";
+  position: absolute;
+  width: 1px;
+  left: 50%;
+  height: 2rem;
+  top: -2rem;
+  background: $border-color-1;
+}
+
+.parent:first-child .date-timeline::before {
+  background-color: transparent;
+}
+
+.parent:first-child .date-timeline {
+  margin-top: 0;
+}
+
+.date-timeline:after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: calc(4rem + -1px);
+  left: 50%;
+  top: 22px;
+  background: $border-color-1;
+}
+app-card-ticket{
+  position: relative;
+  border-color: transparent;
+  border-radius: 0;
+}
+app-card-ticket:hover{
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: $border-color-1;
+}
+.icon-color-default{
+  background: #ffc048;
+}
+.icon-color-task{
+  background: #74b9ff;
+}
+.icon-color-booking{
+  background: #5cd78f;
+}

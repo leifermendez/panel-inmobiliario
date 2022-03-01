@@ -1,0 +1,30 @@
+@import '../../../../../shared.scss';
+
+.block-body{
+  height: calc(100vh - 118px);
+  overflow-y: auto;
+  background-color: $bg-white;
+  border-right: solid 1px $border-color-1;
+  //margin-top: -.5rem;
+  transition: all .1s;
+  position: relative;
+
+}
+.block-body:hover{
+  box-shadow: $shadow-custom;
+  z-index: 4;
+}
+.block-body:first-child{
+  border-left: solid 1px $border-color-1;
+}
+
+.tab-title{
+  background: $bg-white;
+  position: absolute;
+  width: 100%;
+  border-bottom: solid 1px $border-color-1;
+  z-index: 3;
+}
+.margin-card{
+  margin-top: 2rem;
+}

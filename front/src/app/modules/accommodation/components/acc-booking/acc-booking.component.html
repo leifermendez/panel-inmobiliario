@@ -1,0 +1,22 @@
+<div class="">
+  <div class="p-1 tab-title mb-4">
+    {{'ACCOMMODATION.BOOKINGS' |translate}}
+  </div>
+  <div class="in-list">
+    <ng-container *ngTemplateOutlet="emptyAccommodation;context: {data:data}"></ng-container>
+    <app-card-booking class="cal-cell-row" [routerLink]="['/','booking',a?._id]" [data]="a"
+                      *ngFor="let a of data?.docs"></app-card-booking>
+  </div>
+</div>
+<ng-template #emptyAccommodation let-data="data">
+  <div *ngIf="!data?.docs?.length" class="animate__animated animate__fadeIn mt-3 border-0 block-empty-module col-12 text-center
+  ">
+    <div class="mb-2">
+      <img class="img-stander" [src]="'../../../../../assets/images/undraw_empty_xct9.svg'" alt="">
+    </div>
+    <h6 class="">{{'BOOKING_LIST.EMPTY' | translate}}</h6>
+    <p class="small">
+      {{'BOOKING_LIST.EMPTY_PLACEHOLDER'|translate}}
+    </p>
+  </div>
+</ng-template>

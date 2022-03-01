@@ -1,0 +1,82 @@
+<app-header-dashboard></app-header-dashboard>
+<app-side-bar></app-side-bar>
+<div class="container-main">
+  <div class="mb-2">
+    <app-history [history]="history"></app-history>
+  </div>
+  <ng-container *ngTemplateOutlet="loadingWrapper;context: {loading:loading}"></ng-container>
+  <div class="row ml-0 mr-0 col-12 p-0">
+
+    <!--- ********** BLOCK 1 ************ --->
+
+    <div class=" d-sm-block col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 p-0 block-body animation-1 animate__animated animate__fadeIn">
+      <div class="p-1 tab-title mb-1">
+        {{'DASHBOARD.CALENDAR' |translate}}
+      </div>
+      <div class="margin-card">
+        <app-calendar-booking [data]="dataResponse?.calendar"></app-calendar-booking>
+      </div>
+    </div>
+
+    <!--- ********** BLOCK 2 ************ --->
+    <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 p-0 block-body animation-2 animate__animated animate__fadeIn">
+      <div class="p-1 tab-title mb-1">
+        {{'DASHBOARD.EVENTS' |translate}}
+      </div>
+      <div class="margin-card">
+        <div class="text-center p-2">
+          <h2>{{'DASHBOARD.HOME.WELCOME' |translate}}</h2>
+          <p>{{'DASHBOARD.HOME.TEXT' |translate}}</p>
+        </div>
+       <app-card-time-line  [data]="dataResponse?.events"></app-card-time-line>
+      </div>
+
+    </div>
+
+    <!--- ********** BLOCK 3 ************ --->
+    <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 p-0 block-body animation-3 animate__animated animate__fadeIn">
+      <div class="p-1 tab-title mb-1">
+        {{'DASHBOARD.DOCUMENTS' |translate}}
+      </div>
+      <div class="margin-card">
+        <app-dashboard-docs [data]="dataResponse?.docs"></app-dashboard-docs>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+
+<ng-template #loadingWrapper let-loading="loading">
+
+  <!--- ****** SHOW FOR LOADING ****** -->
+
+  <div *ngIf="loading === true" class="wrapper-loading-inside">
+    <div class="text-center d-flex flex-column justify-content-center align-items-center">
+      <div class="wrapper-icon">
+        <img class="icon" src="../../../../../assets/images/airbnb-logo.svg" alt="">
+      </div>
+      <div class="p-2">
+        <span class="text-muted small">{{'GENERAL.LOADING'|translate}}</span>
+      </div>
+    </div>
+  </div>
+
+  <!--- ****** SHOW FOR ERRORS ****** -->
+
+  <div *ngIf="(loading?.status)" class="wrapper-loading-inside">
+    <div class="text-center d-flex flex-column justify-content-center align-items-center">
+      <div>
+        <img class="image-error" src="../../../../../assets/images/undraw_blank_canvas_3rbb.svg" alt="">
+      </div>
+      <div class="p-2">
+        <span class="text-muted small">{{'ERRORS.UNDEFINED.TITLE'|translate}}</span>
+        <div class="p-2">
+          <button type="button" [routerLink]="['/','home']"
+                  class="btn btn-primary">{{'GENERAL.BACK'|translate}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

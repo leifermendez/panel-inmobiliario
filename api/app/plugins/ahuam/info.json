@@ -1,0 +1,12 @@
+{
+  "name": "Ahuam",
+  "version": "0.0.1",
+  "description": "Conexión con Kairos para obtener pisos, bookings, checklist",
+  "author": "leifer33@gmail.com",
+  "path": "ahuam",
+  "features": {
+    "endpoint": "",
+    "key": ""
+  },
+  "video": null
+}

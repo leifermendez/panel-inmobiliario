@@ -1,0 +1,59 @@
+@import '../../../shared.scss';
+
+:host {
+  display: block;
+  background: $bg-white;
+  position: fixed;
+  top: 0;
+  min-height: 100vh;
+  max-width: 100px;
+  min-width: 70px;
+  width: 70px;
+  border-right: solid 1px $border-color;
+  z-index: 2;
+  //box-shadow: 0 0 25px rgba(26, 108, 225, 0.1);
+}
+
+.wrapper-logo {
+  cursor: pointer;
+  height: 60px;
+  border-bottom: solid 1px $border-color;
+}
+
+.logo-side-bar {
+  width: 45px;
+  height: 45px;
+  border-radius: 2px;
+  object-fit: contain;
+  //box-shadow: 0 0 10px #343a401f;
+}
+
+.wrapper-menu .menu-item fa-icon{
+ color: $text-color-1;
+}
+.wrapper-menu li{
+  cursor: pointer;
+  height: 55px;
+  border-bottom: solid 1px #e2e5ed52;
+}
+
+.wrapper-menu li:hover{
+  background-color: #7a374e0d;
+}
+
+.flex-wrap-menu{
+  height: calc(100vh - 60px);
+
+}
+.wrapper-menu-user{
+  //background: red;
+  border-top: solid 1px #e2e5ed;
+  height: 70px;
+}
+
+.image-avatar{
+  width: 40px;
+  height: 40px;
+  border-radius: 2px;
+  object-fit: cover;
+}

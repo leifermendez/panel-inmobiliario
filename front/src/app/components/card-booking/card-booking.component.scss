@@ -1,0 +1,74 @@
+@import '../../../shared.scss';
+
+:host {
+  display: block;
+  background-color: white;
+  padding: .35rem;
+  border-radius: $border-radius;
+  border: solid 1px $border-color-1;
+  transition: all .1s;
+}
+
+:host:hover{
+  box-shadow: $shadow-custom;
+  border: solid 1px $border-color;
+  .wrapper-icon{
+    opacity: 1;
+  }
+}
+.badge-accommodation{
+  background: #ffedb9;
+  padding: 0 .25rem;
+  font-weight: 500;
+  border-radius: $border-radius;
+  border: solid 1px #ffd75f;
+}
+.avatar{
+  width: 35px;
+  height: 35px;
+  object-fit: cover;
+  border-radius: 33px;
+  border: solid 1px #f3f3f3
+}
+
+.wrapper-avatar{
+  width: 40px;
+  display: flex;
+  align-items: center;
+}
+.mock-calendar{
+  width: 100%;
+  position: relative;
+  .mock-calendar-in{
+    position: relative;
+    width: 50%;
+  }
+  //.mock-calendar-in:first-child:after{
+  //  content: "";
+  //  position: absolute;
+  //  width: 10px;
+  //  height: 10px;
+  //  background-color: red;
+  //  top:0;
+  //}
+  .mock-calendar-in:last-child:before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -3vw;
+    width: 6vw;
+    border-top: solid 0px #dc354563;
+    display: flex;
+    align-items: center;
+    margin-top: 10%;
+  }
+  .mock-calendar-in:last-child{
+    text-align: right;
+  }
+}
+.tracker{
+  letter-spacing: 1px;
+}
+.title{
+  //font-weight: 500;
+}

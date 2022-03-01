@@ -1,0 +1,23 @@
+<div>
+  <div class="p-1 tab-title mb-1">
+    {{'ACCOMMODATION.DOCS' |translate}}
+  </div>
+  <div class="in-list">
+    <ng-container *ngTemplateOutlet="emptyAccommodation;context: {data:data}"></ng-container>
+    <div class="wrapper-step " *ngFor="let a of data?.docs">
+    <app-card-docs [data]="a"></app-card-docs>
+    </div>
+  </div>
+</div>
+<ng-template #emptyAccommodation let-data="data">
+  <div *ngIf="!data?.docs?.length" class="animate__animated animate__fadeIn mt-3 border-0 block-empty-module col-12 text-center
+  ">
+    <div class="mb-2">
+      <img class="img-stander" src="../../../../../assets/images/undraw_hiring_cyhs.svg" alt="">
+    </div>
+    <h6 class="">{{'DASHBOARD_DOCS.EMPTY' | translate}}</h6>
+    <p class="small">
+      {{'DASHBOARD_DOCS.EMPTY_PLACEHOLDER'|translate}}
+    </p>
+  </div>
+</ng-template>

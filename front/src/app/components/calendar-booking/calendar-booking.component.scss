@@ -1,0 +1,12 @@
+@import '../../../shared.scss';
+
+
+.angle-calendar{
+  cursor: pointer;
+  //background-color: red;
+}
+::ng-deep{
+  .cal-month-view .cal-day-badge{
+    opacity: 0;
+  }
+}

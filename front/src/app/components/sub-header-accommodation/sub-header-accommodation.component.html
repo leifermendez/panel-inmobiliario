@@ -1,0 +1,11 @@
+<div [routerLink]="['/','accommodation',data?._id]" class="w-100 cal-cell-row d-flex sub-header p-2 position-relative">
+  <div>
+    <img *ngIf="data?.gallery?.length" [src]="data?.gallery[0].small" class="image-accommodation"
+         alt="">
+  </div>
+  <div class="pl-2 pr-2">
+    <div class="truncate">{{data?.name}}</div>
+    <div class="small text-muted truncate">{{data?.address}}, {{data?.city}}</div>
+    <div class=" text-muted truncate">{{data?.owner?.name}}</div>
+  </div>
+</div>

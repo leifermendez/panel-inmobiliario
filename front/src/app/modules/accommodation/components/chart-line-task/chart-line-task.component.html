@@ -1,0 +1,11 @@
+<div class="d-block w-100" >
+  <div class="small">{{title}}</div>
+  <canvas baseChart [height]="250"
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [options]="barChartOptions"
+          [plugins]="barChartPlugins"
+          [legend]="barChartLegend"
+          [chartType]="barChartType">
+  </canvas>
+</div>

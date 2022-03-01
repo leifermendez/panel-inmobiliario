@@ -1,0 +1,52 @@
+@import "../../../../../shared.scss";
+
+:host{
+  position: relative;
+  min-height: calc(100vh);
+  // background-color: red;
+  display: block
+}
+
+.block-first{
+  height: 100vh;
+}
+
+.block-first .image{
+
+}
+
+.block-second{
+
+}
+
+.block-second .image{
+  width: 40rem;
+  height: 40rem;
+  object-fit: contain;
+}
+
+.image-sign-up{
+  width: 35rem;
+  height: 25rem;
+  object-fit: contain;
+}
+.custom-shape-divider-bottom-1599218121 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1599218121 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 75px;
+}
+
+.custom-shape-divider-bottom-1599218121 .shape-fill {
+  fill: $base-color-primary;
+}

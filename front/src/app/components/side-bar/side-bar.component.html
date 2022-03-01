@@ -1,0 +1,115 @@
+<!-- ***** COPILOTS ***** --->
+<div copilot class="d-none" [copilot-class]="'animate__animated animate__fadeIn'" [copilot-template]="step1"
+     [copilot-step]="'welcome'"></div>
+<div copilot class="d-none" [copilot-class]="'animate__animated animate__fadeIn'" [copilot-template]="stepDummyImport"
+     [copilot-step]="'import_dummy'"></div>
+<!-- ***** COPILOTS ***** --->
+
+<div class="">
+  <div [routerLink]="['/']" class="wrapper-logo d-flex justify-content-center align-items-center ">
+    <img class="logo-side-bar" src="../../../assets/images/airbnb-logo.svg" alt="">
+  </div>
+  <div class="d-flex flex-column justify-content-between flex-wrap-menu">
+    <div class="wrapper-menu  pb-2">
+      <ul class="list-unstyled m-0 p-0">
+        <li
+          [routerLink]="(!item?.route?.func) ? item?.route : null"
+          (click)="callFn(item)"
+          copilot
+          [copilot-class]="'animate__animated animate__fadeIn'"
+          [copilot-color]="'rgb(255 255 255 / 82%)'"
+          [copilot-template]="step2" [copilot-step]="item.copilot"
+          [tooltip]="item?.name |translate" placement="right" containerClass="customClass"
+          class="p-2 d-flex justify-content-center  align-items-center" *ngFor="let item of menu;let i = index">
+
+          <!--- ******* STEPPER SIDE-BAR ********* -->
+          <ng-template #step2>
+            <ng-container *ngTemplateOutlet="stepHome;context:{item:item}"></ng-container>
+          </ng-template>
+          <!--- ******* END STEPPER SIDE-BAR ********* -->
+
+
+          <div class="menu-item" *ngIf="item?.type !== 'link'">
+            <fa-icon [icon]="item?.icon" size="lg"></fa-icon>
+          </div>
+          <div class="menu-item" *ngIf="item?.type === 'link'">
+            <a class="p-3" [href]="item?.value" target="_blank">
+              <fa-icon [icon]="item?.icon" size="lg"></fa-icon>
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="wrapper-menu-user d-flex justify-content-center align-items-center">
+      <div>
+        <img class="image-avatar" src="../../../assets/images/undraw_profile_pic_ic5t.svg" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ********** STEPPER TEMPLATES *********** --->
+
+<ng-template #stepDummyImport>
+  <div class="copilot-custom">
+    <h4>{{'COPILOT.IMPORT_DUMMY.TITLE' |translate}}</h4>
+    <p>{{'COPILOT.IMPORT_DUMMY.TEXT' |translate}}</p>
+    <div class="w-100 text-center pt-2 pb-2">
+      <img class="image-stepper" src="../../../assets/images/undraw_robotics_kep0.svg" alt="">
+    </div>
+    <div class="footer-options text-right mt-3 justify-content-between d-flex w-100">
+      <button type="button" (click)="done('import_dummy')" class="btn btn-menu-call">
+        <span class="mr-1">{{'GENERAL.SKIP'|translate}}</span>
+      </button>
+      <button type="button" ngxLoading [textLoading]="'GENERAL.LOADING'|translate"
+              [textInitial]="'GENERAL.LETS_GO'|translate" [loadingFlag]="loading"
+              (click)="importDummy()" class="btn btn-menu-call">
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #step1>
+  <div class="copilot-custom">
+    <h4>{{'COPILOT.WELCOME.TITLE' |translate}}</h4>
+    <p>{{'COPILOT.WELCOME.TEXT' |translate}}</p>
+    <div class="w-100 text-center pt-2 pb-2">
+      <img class="image-stepper" src="../../../assets/images/undraw_data_trends_b0wg.svg" alt="">
+    </div>
+    <div class="footer-options text-right mt-3">
+      <button type="button" (click)="nextStep(1)" class="btn btn-menu-call">
+        <span class="mr-1">{{'GENERAL.LETS_GO'|translate}}</span>
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<!-- **** STEP 1 **** -->
+<ng-template #stepHome let-item="item">
+  <div class="copilot-custom">
+    <h4>{{item?.copilotLanguage + '.TITLE' | translate}}</h4>
+    <p [innerHTML]="item?.copilotLanguage + '.TEXT' | translate"></p>
+    <div class="w-100 text-center pt-2 pb-2">
+      <img class="image-stepper" *ngIf="item?.copilot === 1" src="../../../assets/images/undraw_schedule_pnbk.svg"
+           alt="">
+      <img class="image-stepper" *ngIf="item?.copilot === 2" src="../../../assets/images/undraw_best_place_r685.svg"
+           alt="">
+      <img class="image-stepper" *ngIf="item?.copilot === 3" src="../../../assets/images/undraw_to_do_list_a49b.svg"
+           alt="">
+      <img class="image-stepper" *ngIf="item?.copilot === 4" src="../../../assets/images/undraw_booking_33fn.svg"
+           alt="">
+      <img class="image-stepper" *ngIf="item?.copilot === 5"
+           src="../../../assets/images/undraw_printing_invoices_5r4r.svg"
+           alt="">
+    </div>
+    <div class="footer-options text-right mt-3">
+      <button *ngIf="item?.copilot < 6" (click)="nextStep(item?.copilot+1)" type="button" class="btn btn-menu-call">
+        <span class="mr-1">{{'GENERAL.NEXT'|translate}}</span>
+        <fa-icon size="md" [icon]="faAngleRight"></fa-icon>
+      </button>
+      <button *ngIf="item?.copilot === 6" (click)="nextStep('import_dummy')" type="button" class="btn btn-menu-call">
+        <span class="mr-1">{{'GENERAL.FINISH'|translate}}</span>
+      </button>
+    </div>
+  </div>
+</ng-template>

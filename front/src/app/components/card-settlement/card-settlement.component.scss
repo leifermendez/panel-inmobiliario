@@ -1,0 +1,28 @@
+@import '../../../shared.scss';
+
+:host {
+  display: block;
+  background-color: white;
+  padding: .35rem;
+  border-radius: $border-radius;
+  border: solid 1px $border-color-1;
+  transition: all .1s;
+}
+
+:host:hover{
+  box-shadow: $shadow-custom;
+  border: solid 1px $border-color;
+  .wrapper-icon{
+    opacity: 1;
+  }
+}
+
+.icon-padding{
+  font-size: 4rem;
+  background-color: #f5f6fa;
+  padding: .5rem 2rem;
+}
+.total{
+  font-size: 1.2rem;
+  font-weight: 500;
+}

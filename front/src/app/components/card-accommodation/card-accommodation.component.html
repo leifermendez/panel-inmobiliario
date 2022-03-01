@@ -1,0 +1,39 @@
+<div>
+  <div class=" accommodation">
+    <div class="map pl-1">
+      <div class="in-map" [style.backgroundImage]="'url('+(data?.location?.coordinates | mapUrl)+')'">
+      </div>
+    </div>
+  </div>
+  <div class="body pt-1">
+    <div>
+      <!--      {{builderMap()}}-->
+      <fa-icon [icon]="faStar"></fa-icon>
+      <span>{{data.vote}}</span>
+    </div>
+    <span class="title">{{data.name}}</span>
+    <div class="sub-title">
+      {{data.address}}
+    </div>
+  </div>
+  <div class="footer pt-1">
+    <div class="mr-2 pt-2 ">
+      <div class="brand-logo-zone d-flex w-100 justify-content-start flex-wrap">
+
+        <div class="mr-2 mb-1 text-center">
+          <img class="brand-logo" src="../../../assets/images/airbnb.svg" alt="">
+        </div>
+        <div class="mr-2 mb-1 text-center">
+          <img class="brand-logo" src="../../../assets/images/bookingcom.svg" alt="">
+        </div>
+        <div class="mr-2 mb-1 text-center">
+          <img class="brand-logo" src="../../../assets/images/expedia.svg" alt="">
+        </div>
+        <div class="mr-2 mb-1 text-center">
+          <img class="brand-logo" src="../../../assets/images/Airbnb_Logo_Bélo.svg.png" alt="">
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

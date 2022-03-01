@@ -1,0 +1,41 @@
+@import '../../../shared.scss';
+:host {
+  cursor: pointer;
+  display: block;
+  background-color: white;
+  padding: .35rem;
+  border-radius: $border-radius;
+  border: solid 1px $border-color-1;
+  transition: all .1s;
+}
+
+:host:hover {
+  box-shadow: $shadow-custom;
+  border: solid 1px $border-color;
+
+  .wrapper-icon {
+    opacity: 1;
+  }
+}
+.wrapper-title{
+  font-weight: 500;
+}
+.check-wrapper{
+  align-items: center;
+  width: 3rem;
+  display: flex;
+  justify-content: center;
+  .percentage{
+    font-size: 75%;
+    font-weight: 600;
+  }
+}
+
+.icon-zone{
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4rem;
+}

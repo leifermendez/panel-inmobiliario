@@ -1,0 +1,154 @@
+<div class="p-3">
+  <form autocomplete="nope" [formGroup]="accommodationForm" (submit)="save()">
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label>{{'ACCOMMODATION.NAME' |translate}}</label>
+          <input spellcheck="false" autocomplete="nope" type="text" formControlName="name" class="form-control">
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="form-group">
+          <label>{{'ACCOMMODATION.STATUS' |translate}}</label>
+          <select class="form-control" formControlName="status">
+            <option [value]="item?.value"
+                    *ngFor="let item of status">{{item?.name}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>{{'ACCOMMODATION.ADDRESS' |translate}}</label>
+      <input spellcheck="false" autocomplete="nope" type="text" formControlName="address" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>{{'ACCOMMODATION.ADDRESS_OPTIONAL' |translate}}</label>
+      <input spellcheck="false" autocomplete="nope" type="text" formControlName="addressOptional" class="form-control">
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label>{{'ACCOMMODATION.CITY' |translate}}</label>
+          <input spellcheck="false" autocomplete="nope" type="text" formControlName="city" class="form-control">
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label>{{'ACCOMMODATION.STATE' |translate}}</label>
+          <input spellcheck="false" autocomplete="nope" type="text" formControlName="state" class="form-control">
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label>{{'ACCOMMODATION.COUNTRY' |translate}}</label>
+          <select class="form-control" formControlName="country">
+            <option [value]="item?.value"
+                    *ngFor="let item of this.mapBoxCustomService.countries">{{item?.label}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <hr class="row">
+    <div class="form-group w-100">
+      <label>{{'ACCOMMODATION.CHANNELS' |translate}}</label>
+      <ng-select
+        [items]="channels"
+        [multiple]="true"
+        [closeOnSelect]="false"
+        [searchable]="false"
+        bindLabel="name"
+        formControlName="channels">
+      </ng-select>
+    </div>
+
+    <hr class="row">
+    <div class="form-group">
+      <div class="d-flex flex-wrap pt-2">
+        <div *ngFor="let fileItem of resultsTmp" class="mr-2 position-relative single-close">
+          <div class="card-attach">
+            <button type="button" (click)="removeFile(fileItem)" class="close-remove">
+              <i class="uil uil-times"></i>
+            </button>
+            <div class="body">
+              <div class="text-center icon-padding">
+                <div class="img-preview-thumbnail"
+                     *ngIf="['.jpg','.jpeg','.png','.webp','.svg'].includes(fileItem?.fileType)">
+                  <img width="50px" [src]="fileItem?.small">
+                </div>
+              </div>
+              <div class="footer pt-2">
+                <a [href]="fileItem?.original" class="filename truncate text-dark" target="_blank">
+                  <div class="filename truncate">{{fileItem?.fileName}}</div>
+                </a>
+                <a [href]="fileItem?.original" target="_blank" class="small text-muted filename-sub truncate">
+                  <div class=" ">{{fileItem?.fileType}}</div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>{{'TASK.ATTACHMENTS_PLACEHOLDER' | translate}}</label>
+      <ngx-file-picker #uploader
+                       [fileMaxCount]="10"
+                       [adapter]="adapter"
+                       class="form-control position-relative"
+                       [fileExtensions]="filesExtensions"
+                       [enableCropper]="false"
+                       (validationError)="validationError($event)"
+                       (uploadSuccess)="onUploadSuccess($event)"
+                       (removeSuccess)="onRemoveSuccess($event)"
+                       [itemTemplate]="myItemTemplate"
+                       (fileAdded)="getType($event)"
+                       [showPreviewContainer]="true">
+        <div class="dropzoneTemplate text-center cal-cell-row">
+          <i class="uil uil-link-add"></i>
+          <span class="text-muted ml-2">{{'GENERAL.DRAG_AND_DROP' | translate}}</span>
+        </div>
+
+      </ngx-file-picker>
+      <small class="text-muted">{{'ATTACHMENTS.PLACEHOLDER' | translate}}</small>
+    </div>
+    <hr class="row">
+    <div class="form-group text-right">
+      <button ngxLoading [textInitial]="'ACCOMMODATION.SAVE' |translate"
+              [textLoading]="'GENERAL.SENDING' | translate"
+              [loadingFlag]="loading"
+              class="btn btn-menu-call">SAVE
+      </button>
+    </div>
+  </form>
+
+</div>
+
+<!---- **** TEMPLATE PREVIEW **** --->
+
+<ng-template #myItemTemplate let-fileItem="fileItem" let-uploadProgress="uploadProgress">
+  <div class="loading-parent" *ngIf="(uploadProgress <= 100)">
+    <div class="loading-child">
+      <img src="../../../assets/svg-loading/svg-loaders/oval.svg" alt="">
+    </div>
+  </div>
+  <div class="card-attach">
+    <button type="button" (click)="uploader.removeFile(fileItem)" class="close-remove">
+      <i class="uil uil-times"></i>
+    </button>
+    <div class="body">
+      <div class="text-center icon-padding">
+        <div class="img-preview-thumbnail" *ngIf="getType(this.fileItem).fileType === 'image'">
+          <img width="50px" [src]="getType(this.fileItem).safeUrl">
+        </div>
+      </div>
+      <div class="footer pt-2">
+        <div class="filename truncate">{{uploadProgress}} {{fileItem?.fileName}}</div>
+        <div class="small text-muted filename-sub truncate">{{fileItem?.fileName.split('.').pop()}}</div>
+      </div>
+    </div>
+  </div>
+</ng-template>

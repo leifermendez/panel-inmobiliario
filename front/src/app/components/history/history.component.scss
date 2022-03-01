@@ -1,0 +1,48 @@
+@import '../../../shared.scss';
+
+:host{
+  font-size: 1rem;
+}
+::ng-deep{
+  .pagination{
+    margin-bottom: 0;
+  }
+  .page-link {
+    background-color: transparent;
+    padding: .15rem .75rem;
+    border:solid 1px $border-color-2;
+    color:$base-color-primary-2;
+    font-size: 0.9rem;
+    margin: 0rem .1rem;
+    border-radius: $border-radius;
+  }
+  .page-item.disabled .page-link{
+    background-color: transparent;
+    border:solid 1px $border-color-2
+  }
+  .page-item.active .page-link{
+    background-color: $base-color-primary-2;
+    border-color: $border-color;
+  }
+  .page-link:hover{
+    background-color: $bg-white;
+    color:$base-color-primary-2;
+    border-color: $bg-white;
+    box-shadow: $shadow-custom;
+  }
+}
+hr{
+  border-top: 1px solid rgb(227 232 239 / 37%);
+}
+
+.list-history:last-child{
+  fa-icon{
+    display: none;
+  }
+}
+
+.list-history:first-child{
+  .title{
+    font-weight: 500;
+  }
+}

@@ -1,0 +1,115 @@
+<form [formGroup]="formCall" (submit)="sendRequestCall()">
+  <div class="modal-header font-weight-bold">
+    {{initData?.config?.title | translate}}
+  </div>
+
+  <!-- ********** CALENDAR REQUEST CALL ********** -->
+  <div class="modal-body" *ngIf="initData?.data?.mode === 'call'">
+    <ng-container *ngTemplateOutlet="thankYouCall;context:{send:send}"></ng-container>
+    <div *ngIf="!send">
+      <div class="d-flex justify-content-center">
+        <div>
+          <div class="text-muted">
+            <p>{{'REQUEST.CALL.TEXT' |translate}}</p>
+          </div>
+          <bs-datepicker-inline ngDefaultControl [minDate]="minTime" (bsValueChange)="changeDate($event)"
+                                [(ngModel)]="date"
+                                [ngModelOptions]="{standalone: true}" [bsConfig]="bsConfig"
+                                [bsValue]="bsInlineValue">
+          </bs-datepicker-inline>
+          <div class="w-100 d-flex justify-content-center">
+            <timepicker [minuteStep]="30" [min]="minTime" [(ngModel)]="time"
+                        [ngModelOptions]="{standalone: true}"></timepicker>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ********** CALENDAR REQUEST VISIT ********** -->
+  <div class="modal-body" *ngIf="initData?.data?.mode === 'visit'">
+    <ng-container *ngTemplateOutlet="thankYouCall;context:{send:send}"></ng-container>
+    <div *ngIf="!send">
+      <div class="d-flex justify-content-center">
+        <div class="w-100">
+          <label>{{'REQUEST.VISIT.TEXT' | translate}}</label>
+          <ng-select [items]="accommodations$ | async"
+                     [clearable]="false"
+                     [required]="true"
+                     [ngModelOptions]="{standalone: true}"
+                     (change)="selectAccommodation = $event" [(ngModel)]="selectAccommodation"
+                     bindLabel="name">
+            <ng-template ng-option-tmp let-item="item" let-index="index">
+              <div class="card">
+                <div class="card-body">
+                  <h6 class="card-title mb-0">{{item?.name}}</h6>
+                  <p class="card-text small mb-0">{{item?.address}}</p>
+                  <p class="card-text small mb-0">{{item?.city}} {{item?.country}}</p>
+                </div>
+              </div>
+            </ng-template>
+          </ng-select>
+
+        </div>
+      </div>
+      <div *ngIf="selectAccommodation" class="animate__animated animate__fadeIn">
+        <div class="d-flex justify-content-center">
+          <div>
+            <div class="text-muted pt-2">
+              <p>{{'REQUEST.CALL.TEXT' |translate}}</p>
+            </div>
+            <bs-datepicker-inline ngDefaultControl [minDate]="minTime" (bsValueChange)="changeDate($event)"
+                                  [(ngModel)]="date"
+                                  [ngModelOptions]="{standalone: true}" [bsConfig]="bsConfig"
+                                  [bsValue]="bsInlineValue">
+            </bs-datepicker-inline>
+            <div class="w-100 d-flex justify-content-center">
+              <timepicker [minuteStep]="30" [min]="minTime" [(ngModel)]="time"
+                          [ngModelOptions]="{standalone: true}"></timepicker>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <ng-container *ngIf="!send">
+      <button class="btn btn-menu-call btn-sm" type="button"
+              ngxLoading [textInitial]="'GENERAL.CANCEL' | translate"
+              [textLoading]="'GENERAL.SENDING' | translate"
+              (click)="bsModalRef.hide()"></button>
+
+      <button class="btn btn-primary btn-sm"
+              ngxLoading [loadingFlag]="loading" [textInitial]="'GENERAL.SEND' | translate"
+              [textLoading]="'GENERAL.SENDING' | translate">
+      </button>
+    </ng-container>
+    <ng-container *ngIf="send">
+      <button class="btn btn-menu-call btn-sm" type="button"
+              ngxLoading [textInitial]="'GENERAL.CONTINUE' | translate"
+              [textLoading]="'GENERAL.SENDING' | translate"
+              (click)="bsModalRef.hide()"></button>
+    </ng-container>
+  </div>
+
+</form>
+
+
+<!--  ********** -->
+<ng-template #thankYouCall let-send="send">
+  <div *ngIf="send === 'call'"
+       class="animate__animated animate__fadeIn w-100 d-flex justify-content-center align-content-center h-100">
+    <div class="text-center">
+      <div class="thankYouPage">
+        <img class="img" src="../../../assets/images/undraw_schedule_pnbk.svg" alt="">
+      </div>
+      <div>
+        <p class="mb-0">{{'REQUEST.CALL.THANKYOU' | translate}}</p>
+        <div class="small text-muted">{{'REQUEST.CALL.THANKYOU_PLACEHOLDER' | translate}}</div>
+      </div>
+    </div>
+  </div>
+</ng-template>

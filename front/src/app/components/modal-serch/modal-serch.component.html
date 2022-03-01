@@ -1,0 +1,43 @@
+<div class="p-2">
+  <form action="">
+    <div class="input-group input-group-lg">
+      <div class="input-group-prepend">
+        <span class="input-group-text input-icon-center">
+       <img width="26" *ngIf="loading" [style.opacity]="'.5'" src="../../../assets/images/loading-ring.svg" alt="">
+          <fa-icon *ngIf="!loading" [style.color]="'#d4d4d4'" [icon]="faSearch"></fa-icon>
+        </span>
+      </div>
+      <input #searchInput [spellcheck]="false" type="text" [(ngModel)]="srcInput" (ngModelChange)="search($event)"
+             [ngModelOptions]="{standalone: true}"
+             [placeholder]="'GENERAL.FIND' | translate" class="form-control with-focus">
+    </div>
+    <div class="results">
+      <ul>
+        <li *ngFor="let a of results$ | async">
+          <!--          {{a | json}}-->
+          <div class="">
+            <div>
+              <ngx-highlight-words
+                class="truncate"
+                [textToHighlight]="a?.title"
+                [searchWords]="[srcInput]">
+              </ngx-highlight-words>
+            </div>
+            <div>
+              <ngx-highlight-words
+                class="text-muted  font-weight-normal subtitle-search"
+                [textToHighlight]="a?.observation |stripeHtml | slice:0:200"
+                [searchWords]="[srcInput]">
+              </ngx-highlight-words>
+            </div>
+          </div>
+          <div class="">
+            <button class="btn btn-default btn-sm btn-menu-call" (click)="goTo(a)">
+              <fa-icon [icon]="faExternalLinkAlt"></fa-icon>
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </form>
+</div>

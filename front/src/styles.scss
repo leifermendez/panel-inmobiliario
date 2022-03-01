@@ -1,0 +1,504 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,700;1,400;1,700&display=swap');
+@import './shared.scss';
+@import './copilot.scss';
+@import "~@ng-select/ng-select/themes/default.theme.css";
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/material.scss';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
+
+body {
+  background-color: $base-color;
+  font-family: $font-text;
+  color: #252422;
+  font-weight: 400;
+  font-size: $font-size-global;
+}
+
+*, *:focus, *:hover {
+  outline: none;
+}
+
+:root {
+  --animate-delay: 0.1s;
+}
+
+a {
+  color: #0168FA;
+}
+
+.customClass {
+  position: fixed;
+}
+
+.percentage-red {
+  background: $colorPercentageRed;
+  color: $bg-danger;
+  border: solid 2px $bg-danger
+}
+
+.percentage-yellow {
+  background: $colorPercentageYellow;
+  color: #c58325;
+  border: solid 2px #f0ad4e9e;
+}
+
+.percentage-green {
+  background: $colorPercentageGreen;
+  color: #2ecc71;
+  border: solid 2px #2ecc71ba;
+}
+
+.form-control {
+  border: 1px solid #c0ccda33;
+  width: 100%;
+  height: calc(1.5em + 0.9375rem + 2px);
+  padding: 0.46875rem 0.625rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #1b2e4b;
+  // box-shadow: 0 0 8px #c0ccda6e;
+}
+
+.form-control:focus, .form-control:hover {
+  color: #495057;
+  background-color: #fff;
+  border-color: $border-color;
+  outline: 0;
+  box-shadow: $shadow-custom
+}
+
+.form-control:focus {
+  box-shadow: $shadow-custom-lg
+}
+
+.btn-primary {
+  background-color: $base-color-primary;
+  border-color: $base-color-primary-2;
+}
+
+.btn-primary:hover {
+  background-color: $base-color-primary-3;
+  border-color: $base-color-primary;
+  transition: all .1s;
+  box-shadow: 0 0 15px #74869a96
+}
+
+.font-weight-500 {
+  font-weight: 500;
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  padding-top: 1rem;
+  text-align: center;
+  color: #6f6f6f;
+  font-weight: 300;
+  padding-bottom: 1rem;
+  font-size: .85rem;
+}
+
+.separator::before, .separator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.separator::before {
+  margin-right: .25em;
+}
+
+.separator::after {
+  margin-left: .25em;
+}
+
+.empty-box {
+  background-image: url("./assets/images/undraw_walking_outside_5ueb.svg");
+  width: 25rem;
+  height: 15rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.btn-outline-facebook:hover, .btn-outline-facebook:focus {
+  background-color: #4064ac;
+  border-color: #4064ac;
+  color: #fff;
+}
+
+hr {
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+  border-top: 1px solid rgb(187 187 187 / 10%);
+}
+
+.btn-outline-facebook {
+  background-color: transparent;
+  border-color: #4064ac;
+  color: #4064ac;
+}
+
+.cal-month-view {
+  background-color: transparent;
+}
+
+.cal-cell {
+  font-weight: 400;
+  font-size: 85%;
+}
+
+.cal-month-view .cal-cell.cal-has-events.cal-open {
+  background-color: #f4f0f1;
+}
+
+.cal-month-view .cal-day-cell:not(:last-child) {
+  border-right-color: $border-color-1;
+}
+
+.cal-month-view .cal-days, .cal-month-view .cal-days .cal-cell-row {
+  border-color: $border-color-1;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+
+.cal-cell-row {
+  cursor: pointer
+}
+
+.cursor-not-allowed {
+  cursor: not-allowed !important;
+}
+
+.cal-month-view .cal-day-cell {
+  min-height: 50px;
+  max-height: 80px;
+}
+
+.cal-month-view .cal-cell-row .cal-cell:hover {
+  background-color: transparent;
+}
+
+.cal-month-view .cal-events {
+  margin-top: -15px;
+}
+
+.cal-month-view .cal-day-badge {
+  background-color: #B33771;
+  color: #fff;
+  font-size: 10px;
+  margin-top: 5px;
+  margin-left: 5px;
+  width: 15px;
+  height: 15px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.cal-day-cell {
+  //background-color: #e8fde7;
+}
+
+.cal-month-view .cal-event {
+  width: 5px;
+  height: 5px;
+}
+
+.cal-month-view .cal-open-day-events {
+  color: #2f2f2f;
+  background-color: #fff;
+  font-size: 85%;
+  box-shadow: inset 0 0 15px 0 rgb(0 0 0 / 5%);
+}
+
+.container-main {
+  position: relative;
+  padding: 1rem 1rem 0 5.5rem;
+  display: block;
+  z-index: 1;
+  height: calc(100vh - 60px);
+}
+
+.cal-month-view .cal-day-number {
+  font-size: 1rem;
+  color: #222;
+}
+
+.timeline-custom .timeline-event {
+  left: 0;
+}
+
+
+.btn-social {
+  justify-content: center;
+  width: 100%;
+  display: flex;
+}
+
+.btn-social .logo {
+  //width: 15%;
+  //background: red;
+}
+
+.btn-google {
+  color: #DB4437;
+  background: white;
+  border: solid 1px #DB4437;
+}
+
+.btn-linkedin {
+  color: #2867B2;
+  background: white;
+  border: solid 1px #2867B2;
+}
+
+.modal-content {
+  border-radius: $border-radius;
+  border-color: $border-color;
+  box-shadow: $shadow-custom;
+  //padding: .5rem;
+}
+
+.block-empty {
+  padding: 2rem;
+}
+
+.img-stander {
+  width: 10rem;
+  height: 10rem;
+}
+
+.block-empty-module {
+  background-color: $bg-white;
+  border: solid 1px $border-color-1;
+  padding: 3rem;
+}
+
+.modal-header {
+  border-bottom-color: $border-color-2;
+}
+
+.modal-footer {
+  border-top-color: $border-color-2;
+}
+
+.modal-backdrop {
+  background-color: #e8e8e8;
+}
+
+.ql-container.ql-snow, .ql-toolbar.ql-snow {
+  border: 1px solid transparent;
+}
+
+.ql-editor.ql-blank::before {
+  font-style: normal;
+}
+
+.ql-container {
+  font-family: $font-text;
+}
+
+.geocoderCustom {
+  .mapboxgl-ctrl-geocoder--input:focus {
+    outline: none;
+  }
+
+  //background-color: red;
+}
+
+.geocoderCustom, .geocoderCustom .mapboxgl-ctrl {
+  width: 100%;
+  max-width: 100%;
+  box-shadow: 0 0 0 0 transparent;
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+  color: #fff;
+  background-color: $base-color-primary;
+  border-color: $base-color-primary-2;
+}
+
+.btn-outline-secondary:hover {
+  color: #222222;
+}
+
+.toast-container .ngx-toastr:hover {
+  box-shadow: $shadow-custom-lg;
+}
+
+.toast-container .ngx-toastr {
+  background-image: none;
+  box-shadow: $shadow-custom;
+  padding: 5px 10px;
+  border-radius: $border-radius;
+}
+
+.toast-error {
+  background-color: #e74c3c;
+}
+
+.toast-warning {
+  background-color: #fdcb6e;
+}
+
+.toast-success {
+  background-color: #00b894;
+}
+
+.toast-top-center {
+  top: 1%;
+  right: 0;
+  width: 100%;
+}
+
+.toast-top-right {
+  top: 30px;
+  right: 35px;
+}
+
+.toast-info {
+  background-color: #ffffff;
+  color: #222 !important;
+}
+
+.toast-info .toast-close-button {
+  color: gray;
+}
+
+.toast-message {
+  font-size: 90%;
+}
+
+.wrapper-loading-inside {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  background: #ececec;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+
+  .image-error {
+    width: 12rem;
+    height: 12rem;
+    object-fit: contain;
+  }
+
+  .wrapper-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    background-image: url("./assets/svg-loading/svg-loaders/oval.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 65px;
+    height: 65px;
+  }
+
+  .icon {
+    width: 25px;
+  }
+}
+
+.form-control:disabled, .form-control[readonly] {
+  background-color: #f7f7f7 !important;
+  opacity: 1;
+}
+
+.btn-menu-call {
+  border-radius: $border-radius;
+  background-color: $bg-white;
+  box-shadow: $shadow-custom-sm;
+  //border: solid 1px $border-color-1;
+}
+
+.btn-menu-call:hover {
+  transition: all .1s;
+  box-shadow: $shadow-custom-lg;
+}
+
+.btn-shadow-default:hover {
+  box-shadow: $shadow-custom;
+}
+
+.alert-warning {
+  background-color: #fff7dc;
+}
+
+.alert {
+  padding: .25rem .5rem;
+  font-size: 85%;
+  border-radius: $border-radius;
+}
+
+.ng-select.ng-invalid.ng-touched .ng-select-container {
+  border-color: #dc3545 #dc3545 #dc3545 #dc3545 !important;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  font-weight: 300;
+  color: #C0CCDA !important
+}
+
+#dropZone, ngx-file-picker {
+  border-radius: $border-radius !important;
+}
+
+::-moz-placeholder { /* Firefox 19+ */
+  font-weight: 300;
+  color: #C0CCDA !important
+}
+
+:-ms-input-placeholder { /* IE 10+ */
+  font-weight: 300;
+  color: #C0CCDA !important
+}
+
+:-moz-placeholder { /* Firefox 18- */
+  font-weight: 300;
+  color: #C0CCDA !important
+}
+
+::-webkit-scrollbar {
+  width: 0px; /* width of the entire scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: $base-color-1; /* color of the tracking area */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $border-color-1; /* color of the scroll thumb */
+  border-radius: $border-radius; /* roundness of the scroll thumb */
+  border: 3px solid $bg-white; /* creates padding around scroll thumb */
+}
+
+
+button:focus {
+  outline: 0 !important;
+}
+
+@media (min-width: 1024px) {
+  .modal-xl {
+    max-width: 1024px;
+  }
+
+}
+
+//0rem 0rem 0 4.5rem
+@media (max-width: 576px) {
+  .container-main {
+    padding: 0rem 0rem 0 4.5rem;
+  }
+
+}

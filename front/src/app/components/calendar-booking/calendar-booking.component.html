@@ -1,0 +1,24 @@
+<div class="text-center">
+  <div class="col-12 text-center pt-2 d-flex justify-content-center align-items-center align-content-center">
+    <div mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()"
+         class="pl-2 pr-2 angle-calendar hvr-pulse">
+      <fa-icon [icon]="faAngleLeft"></fa-icon>
+    </div>
+    <h6 class="mb-0">{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h6>
+    <div mwlCalendarNextView [view]="view" (viewDateChange)="closeOpenMonthViewDay()" [(viewDate)]="viewDate"
+         class="pl-2 pr-2 angle-calendar hvr-pulse">
+      <fa-icon [icon]="faAngleRight"></fa-icon>
+    </div>
+  </div>
+
+</div>
+<!--{{events | json}}-->
+<mwl-calendar-month-view
+  [viewDate]="viewDate"
+  [events]="events"
+  [refresh]="refresh"
+  [activeDayIsOpen]="activeDayIsOpen"
+  (dayClicked)="dayClicked($event.day)"
+  (eventClicked)="handleEvent('Clicked', $event.event)"
+  (eventTimesChanged)="eventTimesChanged($event)">
+</mwl-calendar-month-view>

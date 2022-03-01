@@ -1,0 +1,53 @@
+@import '../../../../../shared.scss';
+.ngx-datatable.material{
+  box-shadow: 0 0 0;
+  border:solid 1px $border-color-1;
+}
+.wrapper-doc {
+  position: relative;
+  cursor: pointer;
+
+  .single-minimal-docs {
+    //border:solid 1px $border-color;
+    //background-color: $bg-white;
+    border-width: 1px;
+    border-radius: $border-radius;
+  }
+
+  .badge-count {
+    top: -2px;
+    left: -2px;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50px;
+  }
+
+  .badge-count.green {
+    background-color: #2ecc71;
+  }
+
+  .badge-count.yellow {
+    background-color: #c58325;
+  }
+
+  .badge-count.red {
+    background-color: #dc3545;
+  }
+
+}
+
+.expand-icon {
+  font-size: 1.35rem;
+  color: $base-color-primary;
+}
+
+.empty-box-inline{
+  position: absolute;
+  width: 100%;
+  background-color: #f5f5f5;
+  z-index: 9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

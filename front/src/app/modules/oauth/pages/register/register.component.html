@@ -1,0 +1,98 @@
+<app-header></app-header>
+<div class="ml-0 mr-0 row pl-0 pr-0 pt-4">
+  <div class="p-4 col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 offset-lg-2 offset-xl-2 justify-content-center mb-4">
+    <div class="pt-2 d-flex ">
+      <!-- FORMS -->
+      <form autocomplete="off" [formGroup]="registerForm" (submit)="register()"
+            class="col-12 col-sm-12 col-md-8 col-lg-12 col-xl-4 offset-md-2 offset-lg-0 offset-xl-0 pl-0 pr-0">
+        <h4>
+          <!--          {{findInvalidControls(registerForm) | json}}-->
+          {{'SIGN_UP.TITLE' | translate}}
+        </h4>
+        <h6 class="text-muted font-weight-light mb-2">{{'SIGN_UP.SUB_TITLE' | translate}}</h6>
+        <div class="form-group animate__animated animate__fadeIn">
+          <label for="exampleInputEmail1">{{'SIGN_UP.NAME' | translate}}</label>
+          <input autocomplete="off" type="text" class="form-control  " formControlName="name" spellcheck="false"
+                 id="name"
+                 aria-describedby="emailHelp"
+                 placeholder="">
+
+        </div>
+        <div class="form-group animate__animated animate__fadeIn">
+          <label for="exampleInputEmail1">{{'SIGN_UP.EMAIL' | translate}}</label>
+          <input autocomplete="off" type="email" class="form-control  " formControlName="email" spellcheck="false"
+                 id="exampleInputEmail1"
+                 aria-describedby="emailHelp"
+                 placeholder="">
+          <small id="emailHelp" class="form-text text-muted">{{'SIGN_UP.EMAIL_PLACEHOLDER' | translate}}</small>
+        </div>
+        <div class="animation-3 form-group animate__animated animate__fadeIn">
+          <label for="exampleInputPassword1">{{'SIGN_UP.PASSWORD' | translate}}</label>
+          <input autocomplete="off" type="password" class="form-control " formControlName="password" spellcheck="false"
+                 id="exampleInputPassword1" placeholder="">
+          <password-strength-meter [colors]="['red', 'orangered', 'orange', 'yellowgreen', 'green']"
+                                   [password]="registerForm?.value?.password"></password-strength-meter>
+          <small>{{'SIGN_IN.PASSWORD_CONDITIONS' | translate}}</small>
+        </div>
+
+
+        <div class="form-group animate__animated animate__fadeIn">
+          <p-checkbox color="primary" shape="curve" (change)="chCheck($event)">
+            {{'SIGN_UP.TERMS_POLICY' | translate}}
+          </p-checkbox>
+        </div>
+        <div class="form-group animate__animated animate__fadeIn">
+          <button ngxLoading [textLoading]="'Loading'" [textInitial]="'GENERAL.CONTINUE' | translate"
+                  [loadingFlag]="loading" [disabled]="!registerForm.valid"
+                  type="submit" class="btn button hvr-shrink btn-primary btn-block">
+          </button>
+        </div>
+
+        <ng-container *ngIf="false">
+          <div class="separator pt-1 pb-4">{{'SIGN_UP.OR' | translate}}</div>
+          <div class="form-group animate__animated animate__fadeIn">
+            <button type="submit"
+                    class="button hvr-shrink btn btn-block btn-social btn-google">
+              <span class="mr-3 logo"><fa-icon [icon]="faGoogle"></fa-icon></span>
+              <span class=" text-left">{{'SIGN_UP.GMAIL' | translate}}</span>
+            </button>
+          </div>
+
+          <div class="form-group animate__animated animate__fadeIn">
+            <button type="submit" class="btn button hvr-shrink btn-social btn-linkedin btn-block">
+              <span class="mr-3 logo"><fa-icon [icon]="faLinkedinIn"></fa-icon></span>
+              <span class=" text-left">{{'SIGN_UP.LINKEDIN' | translate}}</span>
+            </button>
+          </div>
+        </ng-container>
+        <div class="form-group animate__animated animate__fadeIn">
+          <p class="small pt-2 pb-2">{{'SIGN_UP.ALREADY_ACCOUNT' | translate}}
+            <a class="hvr-grow text-dark" [routerLink]="['/','oauth','login']">{{'SIGN_UP.SIGN_UP' | translate}}</a>
+          </p>
+        </div>
+
+      </form>
+
+      <!-- IMAGE BLOCK-->
+      <div class="col-xl-8 d-none d-xl-block animate__animated animate__fadeIn ">
+        <div class=" d-flex justify-content-end h-100 align-items-center">
+          <img class="image-sign-up" src="../../../../../assets/images/undraw_Operating_system_re_iqsc.svg" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="custom-shape-divider-bottom-1599218121">
+  <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+    <path
+      d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
+      opacity=".25" class="shape-fill"></path>
+    <path
+      d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
+      opacity=".5" class="shape-fill"></path>
+    <path
+      d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"
+      class="shape-fill"></path>
+  </svg>
+</div>

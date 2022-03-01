@@ -1,0 +1,65 @@
+<div>
+
+  <div class="body pt-1">
+    <div class="tracker small text-muted">{{data?.localizator}}</div>
+    <!--    <div class="text-center">-->
+    <!--      <img class="avatar" src="../../../assets/images/female.jpg" alt="">-->
+    <!--    </div>-->
+
+    <div class="title pt-1 pb-1">
+      <div class="d-flex">
+        <div class="wrapper-avatar">
+          <img class="avatar" [src]="'../../../assets/avatars/'+data?.guest?.gender+'.jpg'" alt="">
+        </div>
+        <div class="w-75" >
+          <div class="truncate">{{data?.guest?.name}}</div>
+          <div class="truncate">{{data?.guest?.lastName}}</div>
+        </div>
+      </div>
+      <!--    <div class="sub-title">-->
+      <!--      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, veniam!-->
+      <!--    </div>-->
+      <hr>
+      <div class="small">
+        <div>
+          <span class="font-weight-bold">{{'CARD_BOOKING.COUNTRY' | translate}}:</span>
+          <span class="ml-1">{{data?.guest?.nationality}}</span>
+        </div>
+        <div>
+          <span class="font-weight-bold">{{'CARD_BOOKING.LANGUAGE' | translate}}:</span>
+          <span class="ml-1">{{data?.guest?.language}}</span>
+        </div>
+        <div>
+          <span class="font-weight-bold">{{'CARD_BOOKING.ACCOMMODATION' | translate}}:</span>
+          <span class="ml-1 badge-accommodation">{{data?.accommodation?.name}}</span>
+        </div>
+      </div>
+      <hr>
+      <div class="mock-calendar  d-flex justify-content-between">
+        <div class="mock-calendar-in">
+          <div>
+            <fa-icon size="lg" [icon]="faCalendarAlt"></fa-icon>
+            <span class="ml-1">{{data?.checkIn | date:'dd / MM'}}</span>
+          </div>
+          <div class="small text-muted">
+            Check-IN
+          </div>
+        </div>
+        <div class="mock-calendar-in">
+          <fa-icon size="lg" [icon]="faCalendarCheck"></fa-icon>
+          <span class="ml-1">{{data?.checkOut | date:'dd / MM'}}</span>
+          <div class="small text-muted">
+            Check-OUT
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer pt-1">
+      <div class="d-flex">
+<!--        <div class="mr-2" *ngFor="let a of [1,1,1,1]">-->
+<!--          &lt;!&ndash;        <fa-icon size="lg" [icon]="faAirbnb"></fa-icon>&ndash;&gt;-->
+<!--        </div>-->
+
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,48 @@
+// @font-face {
+//   font-family: "AirBnb";
+//   src: url('./assets/fonts/AirbnbCereal-Medium.ttf');
+// }
+
+$base-color: #fbfbfb;
+$base-color-2: #f5f5f5;
+$base-color-1: #ffffffcc;
+$border-color: #ff5a5f5e;
+$border-color-1: #efefef;
+$border-color-2: #fbfbfb;
+$base-color-primary: #ff5a5f;
+$base-color-primary-2: #e74247;
+$base-color-primary-3: #cc494d;
+$base-color-secondary-1: #e7f1fe;
+$text-color-1:#1a1a1a;
+$bg-white: #FFFFFF;
+$border-radius: 0.15rem;
+$bg-danger: #dc3545;
+$font-size-global: .9rem;
+$footer-height: 2.5rem;
+$font-text: 'Poppins', sans-serif;
+$shadow-custom: 0 0 25px rgb(255 90 95 / 12%);
+$shadow-custom-sm: 0 0 10px rgb(122 57 79 / 12%);
+$shadow-custom-lg: 0 0 45px #cbabb8a6;
+$colorPercentageGreen:#2ecc7133;
+$colorPercentageRed:#f556561f;
+$colorPercentageYellow:#f0ad4e38;
+
+@for $i from 1 through 100 {
+  .animation-#{$i} {
+    animation-delay: #{$i /10}s;
+  }
+}
+
+@for $i from 1 through 100 {
+  .z-index-#{$i} {
+    z-index: #{$i};
+  }
+}
+
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
